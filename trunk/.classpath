@@ -3,24 +3,20 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/3"/>
-	<classpathentry kind="lib" path="/home/io/documenti/Daniele/workspaces/Tesi/jzks/lib/collections-generic-4.01.jar"/>
-	<classpathentry kind="lib" path="/home/io/documenti/Daniele/workspaces/Tesi/jzks/lib/colt-1.2.0.jar"/>
-	<classpathentry kind="lib" path="/home/io/documenti/Daniele/workspaces/Tesi/jzks/lib/concurrent-1.3.4.jar"/>
-	<classpathentry kind="lib" path="/home/io/documenti/Daniele/workspaces/Tesi/jzks/lib/jpbc-api-1.0.0.jar"/>
-	<classpathentry kind="lib" path="/home/io/documenti/Daniele/workspaces/Tesi/jzks/lib/jpbc-crypto-1.0.0.jar"/>
-	<classpathentry kind="lib" path="/home/io/documenti/Daniele/workspaces/Tesi/jzks/lib/jpbc-pbc-1.0.0.jar"/>
-	<classpathentry kind="lib" path="/home/io/documenti/Daniele/workspaces/Tesi/jzks/lib/jpbc-plaf-1.0.0.jar"/>
-	<classpathentry kind="lib" path="/home/io/documenti/Daniele/workspaces/Tesi/jzks/lib/jung-algorithms-2.0.1.jar"/>
-	<classpathentry kind="lib" path="/home/io/documenti/Daniele/workspaces/Tesi/jzks/lib/jung-api-2.0.1.jar"/>
-	<classpathentry kind="lib" path="/home/io/documenti/Daniele/workspaces/Tesi/jzks/lib/jung-graph-impl-2.0.1.jar"/>
-	<classpathentry kind="lib" path="/home/io/documenti/Daniele/workspaces/Tesi/jzks/lib/jung-visualization-2.0.1.jar"/>
-	<classpathentry kind="lib" path="/home/io/documenti/Daniele/workspaces/Tesi/jzks/lib/tree.jar"/>
-	<classpathentry kind="lib" path="/home/io/documenti/Daniele/workspaces/Tesi/jzks/lib/xmlpull_1_1_3_4c.jar"/>
-	<classpathentry kind="lib" path="/home/io/documenti/Daniele/workspaces/Tesi/jzks/lib/xpp3-1.1.4c.jar"/>
-	<classpathentry kind="lib" path="/home/io/documenti/Daniele/workspaces/Tesi/jzks/lib/xstream-1.3.1.jar">
-		<attributes>
-			<attribute name="javadoc_location" value="jar:platform:/resource/jzks/lib/xstream-1.3.1-javadoc.jar!/"/>
-		</attributes>
-	</classpathentry>
+	<classpathentry kind="lib" path="lib/collections-generic-4.01.jar"/>
+	<classpathentry kind="lib" path="lib/colt-1.2.0.jar"/>
+	<classpathentry kind="lib" path="lib/concurrent-1.3.4.jar"/>
+	<classpathentry kind="lib" path="lib/jpbc-api-1.0.0.jar"/>
+	<classpathentry kind="lib" path="lib/jpbc-crypto-1.0.0.jar"/>
+	<classpathentry kind="lib" path="lib/jpbc-pbc-1.0.0.jar"/>
+	<classpathentry kind="lib" path="lib/jpbc-plaf-1.0.0.jar"/>
+	<classpathentry kind="lib" path="lib/jung-algorithms-2.0.1.jar"/>
+	<classpathentry kind="lib" path="lib/jung-api-2.0.1.jar"/>
+	<classpathentry kind="lib" path="lib/jung-graph-impl-2.0.1.jar"/>
+	<classpathentry kind="lib" path="lib/jung-visualization-2.0.1.jar"/>
+	<classpathentry kind="lib" path="lib/tree.jar"/>
+	<classpathentry kind="lib" path="lib/xmlpull_1_1_3_4c.jar"/>
+	<classpathentry kind="lib" path="lib/xpp3-1.1.4c.jar"/>
+	<classpathentry kind="lib" path="lib/xstream-1.3.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
