@@ -1,25 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<editmodel:ClassDiagramEditModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:editmodel="editmodel.xmi" xmlns:options="options.xmi" name="qTMC" size="1624,1519" id="it.unisa.dia.jzks.qTMC" metadata="uml2-1.0" initialized="true" scrolledX="36" scrolledY="745" tag="1000" key="32303037303533312D31303030206A7A6B732F446F74742E20436F7374616E7465">
-  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.5/@sourceConnections.4 //@children.4/@sourceConnections.0 //@children.1/@sourceConnections.3" name="CommitmentKeys" location="1200,255" size="153,75" id="it.unisa.dia.jzks.qTMC/CommitmentKeys">
+<editmodel:ClassDiagramEditModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:editmodel="editmodel.xmi" xmlns:options="options.xmi" name="diagramma dele classi di qTMC" size="1624,1519" id="it.unisa.dia.jzks.qTMC" metadata="uml2-1.0" initialized="true" tag="1000" key="32303037303533312D31303030206A7A6B732F446F74742E20436F7374616E7465">
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.5/@sourceConnections.3 //@children.4/@sourceConnections.0 //@children.1/@sourceConnections.3" name="CommitmentKeys" location="990,69" size="153,157" id="it.unisa.dia.jzks.qTMC/CommitmentKeys" runTimeClassModel="setPk(Ljava.util.ArrayList;),getPk(),setTk(Lit.unisa.dia.gas.jpbc.Element;),getTk(),tk,pk">
     <children xsi:type="editmodel:CompartmentEditModel" size="129,36">
       <children xsi:type="editmodel:AttributeEditModel" name="pk" id="it.unisa.dia.jzks.qTMC/CommitmentKeys#pk"/>
       <children xsi:type="editmodel:AttributeEditModel" name="tk" id="it.unisa.dia.jzks.qTMC/CommitmentKeys#tk"/>
     </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="56,72">
+      <children xsi:type="editmodel:MethodEditModel" name="setPk" id="it.unisa.dia.jzks.qTMC/CommitmentKeys#setPk(Ljava.util.ArrayList;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getTk" id="it.unisa.dia.jzks.qTMC/CommitmentKeys#getTk()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="setTk" id="it.unisa.dia.jzks.qTMC/CommitmentKeys#setTk(Lit.unisa.dia.gas.jpbc.Element;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getPk" id="it.unisa.dia.jzks.qTMC/CommitmentKeys#getPk()"/>
+    </children>
     <children xsi:type="editmodel:CompartmentEditModel"/>
-    <children xsi:type="editmodel:CompartmentEditModel"/>
-    <sourceConnections xsi:type="editmodel:AssociationEditModel" autoLocated="true" id="it.unisa.dia.jzks.qTMC/CommitmentKeys@keys+it.unisa.dia.jzks.qTMC.test/CommmitmentTest@" source="//@children.0" target="//@children.1" targetEnd="//@children.0/@sourceConnections.0/@children.2" label="//@children.0/@sourceConnections.0/@children.0" sourceEnd="//@children.0/@sourceConnections.0/@children.1" connectionRouterKind="Manhattan">
-      <children xsi:type="editmodel:WireLabelEditModel" size="0,14" anchorKind="MiddlePart"/>
-      <children xsi:type="editmodel:AssociationEndEditModel" name="keys" location="0,25" id="it.unisa.dia.jzks.qTMC/CommitmentKeys@keys+it.unisa.dia.jzks.qTMC.test/CommmitmentTest@|it.unisa.dia.jzks.qTMC/CommitmentKeys#keys" attachSource="true" multiplicityLabel="//@children.0/@sourceConnections.0/@children.1/@children.1" roleLabel="//@children.0/@sourceConnections.0/@children.1/@children.0" navigable="true">
-        <children xsi:type="editmodel:LabelEditModel" name=" ~ keys" location="1158,259" size="35,14" anchorKind="FirstPart"/>
-        <children xsi:type="editmodel:LabelEditModel" name="0..1" location="1175,287" size="18,14" anchorKind="FirstPart"/>
-      </children>
-      <children xsi:type="editmodel:AssociationEndEditModel" location="213,20" id="it.unisa.dia.jzks.qTMC/CommitmentKeys@keys+it.unisa.dia.jzks.qTMC.test/CommmitmentTest@|it.unisa.dia.jzks.qTMC.test/CommmitmentTest#"/>
-    </sourceConnections>
     <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
   </children>
-  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.5/@sourceConnections.1 //@children.0/@sourceConnections.0" name="CommmitmentTest" location="689,348" size="213,135" id="it.unisa.dia.jzks.qTMC.test/CommmitmentTest">
-    <children xsi:type="editmodel:CompartmentEditModel" size="190,18">
+  <children xsi:type="editmodel:ClassEditModel" name="CommmitmentTest" location="510,15" size="213,171" id="it.unisa.dia.jzks.qTMC.test/CommmitmentTest" runTimeClassModel="testSoftCommit(),testFakeCommit(),keys,commitment,messageArray,testHardCommit()">
+    <children xsi:type="editmodel:CompartmentEditModel" size="190,54">
       <children xsi:type="editmodel:AttributeEditModel" name="messageArray" id="it.unisa.dia.jzks.qTMC.test/CommmitmentTest#messageArray"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="commitment" id="it.unisa.dia.jzks.qTMC.test/CommmitmentTest#commitment"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="keys" id="it.unisa.dia.jzks.qTMC.test/CommmitmentTest#keys"/>
     </children>
     <children xsi:type="editmodel:CompartmentEditModel" size="105,54">
       <children xsi:type="editmodel:MethodEditModel" name="testFakeCommit" id="it.unisa.dia.jzks.qTMC.test/CommmitmentTest#testFakeCommit()"/>
@@ -28,38 +27,45 @@
     </children>
     <children xsi:type="editmodel:CompartmentEditModel"/>
     <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="it.unisa.dia.jzks.qTMC.test/CommmitmentTest-Standard::Call->it.unisa.dia.jzks.qTMC/Commitment*it.unisa.dia.jzks.qTMC.test/CommmitmentTest-Standard::Instantiate->it.unisa.dia.jzks.qTMC/Commitment*it.unisa.dia.jzks.qTMC.test/CommmitmentTest-Soyatec::Import->it.unisa.dia.jzks.qTMC/Commitment" source="//@children.1" target="//@children.5" targetEnd="//@children.1/@sourceConnections.0/@children.2" label="//@children.1/@sourceConnections.0/@children.0" sourceEnd="//@children.1/@sourceConnections.0/@children.1" connectionRouterKind="Manual">
-      <children xsi:type="editmodel:WireLabelEditModel" name="«Instantiate, Import, Call»" size="119,14" anchorKind="MiddlePart"/>
-      <children xsi:type="editmodel:AssociationEndEditModel" location="164,135" attachSource="true"/>
-      <children xsi:type="editmodel:AssociationEndEditModel" location="0,86"/>
+      <children xsi:type="editmodel:WireLabelEditModel" name="«Call, Import, Instantiate»" size="119,14" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="157,171" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="0,110"/>
     </sourceConnections>
     <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="it.unisa.dia.jzks.qTMC.test/CommmitmentTest-Standard::Call->it.unisa.dia.jzks.qTMC/OutputCommit*it.unisa.dia.jzks.qTMC.test/CommmitmentTest-Soyatec::Import->it.unisa.dia.jzks.qTMC/OutputCommit" source="//@children.1" target="//@children.2" targetEnd="//@children.1/@sourceConnections.1/@children.2" label="//@children.1/@sourceConnections.1/@children.0" sourceEnd="//@children.1/@sourceConnections.1/@children.1" connectionRouterKind="Manual">
-      <children xsi:type="editmodel:WireLabelEditModel" name="«Import, Call»" size="64,14" anchorKind="MiddlePart"/>
-      <children xsi:type="editmodel:AssociationEndEditModel" location="0,108" attachSource="true"/>
-      <children xsi:type="editmodel:AssociationEndEditModel" location="159,15"/>
+      <children xsi:type="editmodel:WireLabelEditModel" name="«Call, Import»" size="64,14" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="0,146" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="159,59"/>
     </sourceConnections>
     <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="it.unisa.dia.jzks.qTMC.test/CommmitmentTest-Soyatec::Import->it.unisa.dia.jzks.qTMC/MessageMismatchException" source="//@children.1" target="//@children.3" targetEnd="//@children.1/@sourceConnections.2/@children.2" label="//@children.1/@sourceConnections.2/@children.0" sourceEnd="//@children.1/@sourceConnections.2/@children.1" connectionRouterKind="Manual">
       <children xsi:type="editmodel:WireLabelEditModel" name="«Import»" size="41,14" anchorKind="MiddlePart"/>
-      <children xsi:type="editmodel:AssociationEndEditModel" location="144,135" attachSource="true"/>
-      <children xsi:type="editmodel:AssociationEndEditModel" location="68,0"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="94,171" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="124,0"/>
     </sourceConnections>
     <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="it.unisa.dia.jzks.qTMC.test/CommmitmentTest-Standard::Call->it.unisa.dia.jzks.qTMC/CommitmentKeys*it.unisa.dia.jzks.qTMC.test/CommmitmentTest-Soyatec::Import->it.unisa.dia.jzks.qTMC/CommitmentKeys" source="//@children.1" target="//@children.0" targetEnd="//@children.1/@sourceConnections.3/@children.2" label="//@children.1/@sourceConnections.3/@children.0" sourceEnd="//@children.1/@sourceConnections.3/@children.1" connectionRouterKind="Manual">
-      <children xsi:type="editmodel:WireLabelEditModel" name="«Import, Call»" size="64,14" anchorKind="MiddlePart"/>
-      <children xsi:type="editmodel:AssociationEndEditModel" location="213,40" attachSource="true"/>
-      <children xsi:type="editmodel:AssociationEndEditModel" location="0,56"/>
+      <children xsi:type="editmodel:WireLabelEditModel" name="«Call, Import»" size="64,14" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="213,112" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="0,58"/>
     </sourceConnections>
     <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
   </children>
-  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.5/@sourceConnections.2 //@children.4/@sourceConnections.1 //@children.1/@sourceConnections.1" name="OutputCommit" location="315,525" size="159,93" id="it.unisa.dia.jzks.qTMC/OutputCommit">
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.5/@sourceConnections.1 //@children.4/@sourceConnections.1 //@children.1/@sourceConnections.1" name="OutputCommit" location="135,225" size="159,211" id="it.unisa.dia.jzks.qTMC/OutputCommit" runTimeClassModel="setV(Lit.unisa.dia.gas.jpbc.Element;),v,c,getV(),setAux(Ljava.util.ArrayList;),getC(),getAux(),aux,setC(Lit.unisa.dia.gas.jpbc.Element;)">
     <children xsi:type="editmodel:CompartmentEditModel" size="136,54">
       <children xsi:type="editmodel:AttributeEditModel" name="aux" id="it.unisa.dia.jzks.qTMC/OutputCommit#aux"/>
       <children xsi:type="editmodel:AttributeEditModel" name="c" id="it.unisa.dia.jzks.qTMC/OutputCommit#c"/>
       <children xsi:type="editmodel:AttributeEditModel" name="v" id="it.unisa.dia.jzks.qTMC/OutputCommit#v"/>
     </children>
-    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="65,108">
+      <children xsi:type="editmodel:MethodEditModel" name="getC" id="it.unisa.dia.jzks.qTMC/OutputCommit#getC()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="setAux" id="it.unisa.dia.jzks.qTMC/OutputCommit#setAux(Ljava.util.ArrayList;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="setC" id="it.unisa.dia.jzks.qTMC/OutputCommit#setC(Lit.unisa.dia.gas.jpbc.Element;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="setV" id="it.unisa.dia.jzks.qTMC/OutputCommit#setV(Lit.unisa.dia.gas.jpbc.Element;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getAux" id="it.unisa.dia.jzks.qTMC/OutputCommit#getAux()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getV" id="it.unisa.dia.jzks.qTMC/OutputCommit#getV()"/>
+    </children>
     <children xsi:type="editmodel:CompartmentEditModel"/>
     <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
   </children>
-  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.5/@sourceConnections.3 //@children.4/@sourceConnections.2 //@children.1/@sourceConnections.2" name="MessageMismatchException" location="765,915" size="220,67" id="it.unisa.dia.jzks.qTMC/MessageMismatchException">
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.5/@sourceConnections.2 //@children.4/@sourceConnections.2 //@children.1/@sourceConnections.2" name="MessageMismatchException" location="480,257" size="220,67" id="it.unisa.dia.jzks.qTMC/MessageMismatchException" runTimeClassModel="MessageMismatchException(Ljava.lang.String;)">
     <children xsi:type="editmodel:CompartmentEditModel"/>
     <children xsi:type="editmodel:CompartmentEditModel" size="166,18">
       <children xsi:type="editmodel:MethodEditModel" name="MessageMismatchException" id="it.unisa.dia.jzks.qTMC/MessageMismatchException#MessageMismatchException(Ljava.lang.String;)"/>
@@ -67,7 +73,7 @@
     <children xsi:type="editmodel:CompartmentEditModel"/>
     <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
   </children>
-  <children xsi:type="editmodel:InterfaceEditModel" targetConnections="//@children.5/@sourceConnections.0 //@children.5/@sourceConnections.5" name="LibertYung_qTMC" location="555,660" size="167,297" id="it.unisa.dia.jzks.qTMC/LibertYung_qTMC">
+  <children xsi:type="editmodel:InterfaceEditModel" targetConnections="//@children.5/@sourceConnections.0 //@children.5/@sourceConnections.4" name="LibertYung_qTMC" location="420,495" size="167,297" id="it.unisa.dia.jzks.qTMC/LibertYung_qTMC" runTimeClassModel="sOFT_COMMITMENT,qHOpen(Ljava.util.ArrayList;Lit.unisa.dia.gas.jpbc.Element;ILjava.util.ArrayList;),qFake(Ljava.util.ArrayList;Lit.unisa.dia.gas.jpbc.Element;),qKeygen(I),qSVer(Ljava.util.ArrayList;Lit.unisa.dia.gas.jpbc.Element;ILit.unisa.dia.gas.jpbc.Element;Lit.unisa.dia.gas.jpbc.Element;Lit.unisa.dia.gas.jpbc.Element;),qSEquiv(Ljava.util.ArrayList;Lit.unisa.dia.gas.jpbc.Element;Lit.unisa.dia.gas.jpbc.Element;ILjava.util.ArrayList;),hARD_COMMITMENT,qHVer(Ljava.util.ArrayList;Lit.unisa.dia.gas.jpbc.Element;ILit.unisa.dia.gas.jpbc.Element;Lit.unisa.dia.gas.jpbc.Element;[Lit.unisa.dia.gas.jpbc.Element;),qSCom(Ljava.util.ArrayList;),qHCom(Ljava.util.ArrayList;Ljava.util.ArrayList;),pERPENDICULAR,qSOpen(Ljava.util.ArrayList;Lit.unisa.dia.gas.jpbc.Element;IILjava.util.ArrayList;),qHEquiv(Ljava.util.ArrayList;Lit.unisa.dia.gas.jpbc.Element;Ljava.util.ArrayList;ILjava.util.ArrayList;)">
     <children xsi:type="editmodel:CompartmentEditModel" size="144,54">
       <children xsi:type="editmodel:AttributeEditModel" name="hARD_COMMITMENT" id="it.unisa.dia.jzks.qTMC/LibertYung_qTMC#hARD_COMMITMENT"/>
       <children xsi:type="editmodel:AttributeEditModel" name="pERPENDICULAR" id="it.unisa.dia.jzks.qTMC/LibertYung_qTMC#pERPENDICULAR"/>
@@ -88,29 +94,29 @@
     <children xsi:type="editmodel:CompartmentEditModel"/>
     <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="it.unisa.dia.jzks.qTMC/LibertYung_qTMC-Soyatec::Import->it.unisa.dia.jzks.qTMC/CommitmentKeys" source="//@children.4" target="//@children.0" targetEnd="//@children.4/@sourceConnections.0/@children.2" label="//@children.4/@sourceConnections.0/@children.0" sourceEnd="//@children.4/@sourceConnections.0/@children.1" connectionRouterKind="Manual">
       <children xsi:type="editmodel:WireLabelEditModel" name="«Import»" size="41,14" anchorKind="MiddlePart"/>
-      <children xsi:type="editmodel:AssociationEndEditModel" location="167,80" attachSource="true"/>
-      <children xsi:type="editmodel:AssociationEndEditModel" location="29,75"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="167,74" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="0,145"/>
     </sourceConnections>
     <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="it.unisa.dia.jzks.qTMC/LibertYung_qTMC-Soyatec::Import->it.unisa.dia.jzks.qTMC/OutputCommit" source="//@children.4" target="//@children.2" targetEnd="//@children.4/@sourceConnections.1/@children.2" label="//@children.4/@sourceConnections.1/@children.0" sourceEnd="//@children.4/@sourceConnections.1/@children.1" connectionRouterKind="Manual">
       <children xsi:type="editmodel:WireLabelEditModel" name="«Import»" size="41,14" anchorKind="MiddlePart"/>
-      <children xsi:type="editmodel:AssociationEndEditModel" location="0,67" attachSource="true"/>
-      <children xsi:type="editmodel:AssociationEndEditModel" location="127,93"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="0,58" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="159,192"/>
     </sourceConnections>
     <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="it.unisa.dia.jzks.qTMC/LibertYung_qTMC-Standard::Send->it.unisa.dia.jzks.qTMC/MessageMismatchException*it.unisa.dia.jzks.qTMC/LibertYung_qTMC-Soyatec::Import->it.unisa.dia.jzks.qTMC/MessageMismatchException" source="//@children.4" target="//@children.3" targetEnd="//@children.4/@sourceConnections.2/@children.2" label="//@children.4/@sourceConnections.2/@children.0" sourceEnd="//@children.4/@sourceConnections.2/@children.1" connectionRouterKind="Manual">
       <children xsi:type="editmodel:WireLabelEditModel" name="«Send, Import»" size="72,14" anchorKind="MiddlePart"/>
-      <children xsi:type="editmodel:AssociationEndEditModel" location="167,275" attachSource="true"/>
-      <children xsi:type="editmodel:AssociationEndEditModel" location="54,20"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="113,0" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="53,67"/>
     </sourceConnections>
     <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
   </children>
-  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.1/@sourceConnections.0" name="Commitment" location="1065,644" size="189,391" id="it.unisa.dia.jzks.qTMC/Commitment">
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.1/@sourceConnections.0" name="Commitment" location="810,315" size="189,535" id="it.unisa.dia.jzks.qTMC/Commitment" runTimeClassModel="setPairing(Lit.unisa.dia.gas.jpbc.Pairing;),getG(),getPairing(),Commitment(Lit.unisa.dia.gas.jpbc.Field;Lit.unisa.dia.gas.jpbc.Field;Lit.unisa.dia.gas.jpbc.Pairing;),setG(Lit.unisa.dia.gas.jpbc.Field;),qSVer(Ljava.util.ArrayList;Lit.unisa.dia.gas.jpbc.Element;ILit.unisa.dia.gas.jpbc.Element;Lit.unisa.dia.gas.jpbc.Element;Lit.unisa.dia.gas.jpbc.Element;),Commitment(Lit.unisa.dia.gas.jpbc.Field;Lit.unisa.dia.gas.jpbc.Field;),setGp(Lit.unisa.dia.gas.jpbc.ElementPowPreProcessing;),Commitment(),zr,qHVer(Ljava.util.ArrayList;Lit.unisa.dia.gas.jpbc.Element;ILit.unisa.dia.gas.jpbc.Element;Lit.unisa.dia.gas.jpbc.Element;[Lit.unisa.dia.gas.jpbc.Element;),getGp(),qSComPr(Ljava.util.ArrayList;Ljava.math.BigInteger;Ljava.math.BigInteger;),pairing,qSOpen(Ljava.util.ArrayList;Lit.unisa.dia.gas.jpbc.Element;IILjava.util.ArrayList;),g,qHOpen(Ljava.util.ArrayList;Lit.unisa.dia.gas.jpbc.Element;ILjava.util.ArrayList;),qFake(Ljava.util.ArrayList;Lit.unisa.dia.gas.jpbc.Element;),qKeygen(I),qSEquiv(Ljava.util.ArrayList;Lit.unisa.dia.gas.jpbc.Element;Lit.unisa.dia.gas.jpbc.Element;ILjava.util.ArrayList;),getZr(),setZr(Lit.unisa.dia.gas.jpbc.Field;),qHComPr(Ljava.util.ArrayList;Ljava.util.ArrayList;Ljava.math.BigInteger;Ljava.math.BigInteger;),qHCom(Ljava.util.ArrayList;Ljava.util.ArrayList;),qSCom(Ljava.util.ArrayList;),gp,qHEquiv(Ljava.util.ArrayList;Lit.unisa.dia.gas.jpbc.Element;Ljava.util.ArrayList;ILjava.util.ArrayList;)">
     <children xsi:type="editmodel:CompartmentEditModel" size="166,72">
       <children xsi:type="editmodel:AttributeEditModel" name="g" id="it.unisa.dia.jzks.qTMC/Commitment#g"/>
       <children xsi:type="editmodel:AttributeEditModel" name="gp" id="it.unisa.dia.jzks.qTMC/Commitment#gp"/>
       <children xsi:type="editmodel:AttributeEditModel" name="pairing" id="it.unisa.dia.jzks.qTMC/Commitment#pairing"/>
       <children xsi:type="editmodel:AttributeEditModel" name="zr" id="it.unisa.dia.jzks.qTMC/Commitment#zr"/>
     </children>
-    <children xsi:type="editmodel:CompartmentEditModel" size="87,270">
+    <children xsi:type="editmodel:CompartmentEditModel" size="87,414">
       <children xsi:type="editmodel:MethodEditModel" name="Commitment" id="it.unisa.dia.jzks.qTMC/Commitment#Commitment(Lit.unisa.dia.gas.jpbc.Field;Lit.unisa.dia.gas.jpbc.Field;)"/>
       <children xsi:type="editmodel:MethodEditModel" name="Commitment" id="it.unisa.dia.jzks.qTMC/Commitment#Commitment()"/>
       <children xsi:type="editmodel:MethodEditModel" name="Commitment" id="it.unisa.dia.jzks.qTMC/Commitment#Commitment(Lit.unisa.dia.gas.jpbc.Field;Lit.unisa.dia.gas.jpbc.Field;Lit.unisa.dia.gas.jpbc.Pairing;)"/>
@@ -126,38 +132,38 @@
       <children xsi:type="editmodel:MethodEditModel" name="qSEquiv" id="it.unisa.dia.jzks.qTMC/Commitment#qSEquiv(Ljava.util.ArrayList;Lit.unisa.dia.gas.jpbc.Element;Lit.unisa.dia.gas.jpbc.Element;ILjava.util.ArrayList;)"/>
       <children xsi:type="editmodel:MethodEditModel" name="qSOpen" id="it.unisa.dia.jzks.qTMC/Commitment#qSOpen(Ljava.util.ArrayList;Lit.unisa.dia.gas.jpbc.Element;IILjava.util.ArrayList;)"/>
       <children xsi:type="editmodel:MethodEditModel" name="qSVer" id="it.unisa.dia.jzks.qTMC/Commitment#qSVer(Ljava.util.ArrayList;Lit.unisa.dia.gas.jpbc.Element;ILit.unisa.dia.gas.jpbc.Element;Lit.unisa.dia.gas.jpbc.Element;Lit.unisa.dia.gas.jpbc.Element;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getPairing" id="it.unisa.dia.jzks.qTMC/Commitment#getPairing()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getGp" id="it.unisa.dia.jzks.qTMC/Commitment#getGp()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="setZr" id="it.unisa.dia.jzks.qTMC/Commitment#setZr(Lit.unisa.dia.gas.jpbc.Field;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="setG" id="it.unisa.dia.jzks.qTMC/Commitment#setG(Lit.unisa.dia.gas.jpbc.Field;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="setPairing" id="it.unisa.dia.jzks.qTMC/Commitment#setPairing(Lit.unisa.dia.gas.jpbc.Pairing;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getG" id="it.unisa.dia.jzks.qTMC/Commitment#getG()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="setGp" id="it.unisa.dia.jzks.qTMC/Commitment#setGp(Lit.unisa.dia.gas.jpbc.ElementPowPreProcessing;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getZr" id="it.unisa.dia.jzks.qTMC/Commitment#getZr()"/>
     </children>
     <children xsi:type="editmodel:CompartmentEditModel"/>
     <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" id="it.unisa.dia.jzks.qTMC/LibertYung_qTMC&lt;-it.unisa.dia.jzks.qTMC/Commitment" source="//@children.5" target="//@children.4" targetEnd="//@children.5/@sourceConnections.0/@children.1" sourceEnd="//@children.5/@sourceConnections.0/@children.0" connectionRouterKind="Manual">
-      <children xsi:type="editmodel:AssociationEndEditModel" location="0,164" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="0,328" attachSource="true"/>
       <children xsi:type="editmodel:AssociationEndEditModel" location="167,148"/>
     </sourceConnections>
-    <sourceConnections xsi:type="editmodel:AssociationEditModel" autoLocated="true" id="it.unisa.dia.jzks.qTMC/Commitment@commitment+it.unisa.dia.jzks.qTMC.test/CommmitmentTest@" source="//@children.5" target="//@children.1" targetEnd="//@children.5/@sourceConnections.1/@children.2" label="//@children.5/@sourceConnections.1/@children.0" sourceEnd="//@children.5/@sourceConnections.1/@children.1" connectionRouterKind="Manhattan">
-      <children xsi:type="editmodel:WireLabelEditModel" size="0,14" anchorKind="MiddlePart"/>
-      <children xsi:type="editmodel:AssociationEndEditModel" name="commitment" location="0,34" id="it.unisa.dia.jzks.qTMC/Commitment@commitment+it.unisa.dia.jzks.qTMC.test/CommmitmentTest@|it.unisa.dia.jzks.qTMC/Commitment#commitment" attachSource="true" multiplicityLabel="//@children.5/@sourceConnections.1/@children.1/@children.1" roleLabel="//@children.5/@sourceConnections.1/@children.1/@children.0" navigable="true">
-        <children xsi:type="editmodel:LabelEditModel" name=" ~ commitment" location="990,685" size="68,14" anchorKind="FirstPart"/>
-        <children xsi:type="editmodel:LabelEditModel" name="0..1" location="1040,657" size="18,14" anchorKind="FirstPart"/>
-      </children>
-      <children xsi:type="editmodel:AssociationEndEditModel" location="184,135" id="it.unisa.dia.jzks.qTMC/Commitment@commitment+it.unisa.dia.jzks.qTMC.test/CommmitmentTest@|it.unisa.dia.jzks.qTMC.test/CommmitmentTest#"/>
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="it.unisa.dia.jzks.qTMC/Commitment-Standard::Call->it.unisa.dia.jzks.qTMC/OutputCommit*it.unisa.dia.jzks.qTMC/Commitment-Standard::Instantiate->it.unisa.dia.jzks.qTMC/OutputCommit*it.unisa.dia.jzks.qTMC/Commitment-Soyatec::Import->it.unisa.dia.jzks.qTMC/OutputCommit" source="//@children.5" target="//@children.2" targetEnd="//@children.5/@sourceConnections.1/@children.2" label="//@children.5/@sourceConnections.1/@children.0" sourceEnd="//@children.5/@sourceConnections.1/@children.1" connectionRouterKind="Manual">
+      <children xsi:type="editmodel:WireLabelEditModel" name="«Call, Import, Instantiate»" size="119,14" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="0,60" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="159,150"/>
     </sourceConnections>
-    <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="it.unisa.dia.jzks.qTMC/Commitment-Standard::Call->it.unisa.dia.jzks.qTMC/OutputCommit*it.unisa.dia.jzks.qTMC/Commitment-Standard::Instantiate->it.unisa.dia.jzks.qTMC/OutputCommit*it.unisa.dia.jzks.qTMC/Commitment-Soyatec::Import->it.unisa.dia.jzks.qTMC/OutputCommit" source="//@children.5" target="//@children.2" targetEnd="//@children.5/@sourceConnections.2/@children.2" label="//@children.5/@sourceConnections.2/@children.0" sourceEnd="//@children.5/@sourceConnections.2/@children.1" connectionRouterKind="Manual">
-      <children xsi:type="editmodel:WireLabelEditModel" name="«Instantiate, Import, Call»" size="119,14" anchorKind="MiddlePart"/>
-      <children xsi:type="editmodel:AssociationEndEditModel" location="0,162" attachSource="true"/>
-      <children xsi:type="editmodel:AssociationEndEditModel" location="159,74"/>
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="it.unisa.dia.jzks.qTMC/Commitment-Standard::Send->it.unisa.dia.jzks.qTMC/MessageMismatchException*it.unisa.dia.jzks.qTMC/Commitment-Standard::Instantiate->it.unisa.dia.jzks.qTMC/MessageMismatchException*it.unisa.dia.jzks.qTMC/Commitment-Soyatec::Import->it.unisa.dia.jzks.qTMC/MessageMismatchException" source="//@children.5" target="//@children.3" targetEnd="//@children.5/@sourceConnections.2/@children.2" label="//@children.5/@sourceConnections.2/@children.0" sourceEnd="//@children.5/@sourceConnections.2/@children.1" connectionRouterKind="Manual">
+      <children xsi:type="editmodel:WireLabelEditModel" name="«Send, Import, Instantiate»" size="127,14" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="0,4" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="147,62"/>
     </sourceConnections>
-    <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="it.unisa.dia.jzks.qTMC/Commitment-Standard::Send->it.unisa.dia.jzks.qTMC/MessageMismatchException*it.unisa.dia.jzks.qTMC/Commitment-Standard::Instantiate->it.unisa.dia.jzks.qTMC/MessageMismatchException*it.unisa.dia.jzks.qTMC/Commitment-Soyatec::Import->it.unisa.dia.jzks.qTMC/MessageMismatchException" source="//@children.5" target="//@children.3" targetEnd="//@children.5/@sourceConnections.3/@children.2" label="//@children.5/@sourceConnections.3/@children.0" sourceEnd="//@children.5/@sourceConnections.3/@children.1" connectionRouterKind="Manual">
-      <children xsi:type="editmodel:WireLabelEditModel" name="«Instantiate, Send, Import»" size="127,14" anchorKind="MiddlePart"/>
-      <children xsi:type="editmodel:AssociationEndEditModel" location="0,304" attachSource="true"/>
-      <children xsi:type="editmodel:AssociationEndEditModel" location="196,33"/>
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="it.unisa.dia.jzks.qTMC/Commitment-Standard::Call->it.unisa.dia.jzks.qTMC/CommitmentKeys*it.unisa.dia.jzks.qTMC/Commitment-Standard::Instantiate->it.unisa.dia.jzks.qTMC/CommitmentKeys*it.unisa.dia.jzks.qTMC/Commitment-Soyatec::Import->it.unisa.dia.jzks.qTMC/CommitmentKeys" source="//@children.5" target="//@children.0" targetEnd="//@children.5/@sourceConnections.3/@children.2" label="//@children.5/@sourceConnections.3/@children.0" sourceEnd="//@children.5/@sourceConnections.3/@children.1" connectionRouterKind="Manual">
+      <children xsi:type="editmodel:WireLabelEditModel" name="«Call, Import, Instantiate»" size="119,14" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="184,12" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="4,157"/>
     </sourceConnections>
-    <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="it.unisa.dia.jzks.qTMC/Commitment-Standard::Call->it.unisa.dia.jzks.qTMC/CommitmentKeys*it.unisa.dia.jzks.qTMC/Commitment-Standard::Instantiate->it.unisa.dia.jzks.qTMC/CommitmentKeys*it.unisa.dia.jzks.qTMC/Commitment-Soyatec::Import->it.unisa.dia.jzks.qTMC/CommitmentKeys" source="//@children.5" target="//@children.0" targetEnd="//@children.5/@sourceConnections.4/@children.2" label="//@children.5/@sourceConnections.4/@children.0" sourceEnd="//@children.5/@sourceConnections.4/@children.1" connectionRouterKind="Manual">
-      <children xsi:type="editmodel:WireLabelEditModel" name="«Instantiate, Import, Call»" size="119,14" anchorKind="MiddlePart"/>
-      <children xsi:type="editmodel:AssociationEndEditModel" location="161,0" attachSource="true"/>
-      <children xsi:type="editmodel:AssociationEndEditModel" location="26,75"/>
-    </sourceConnections>
-    <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="it.unisa.dia.jzks.qTMC/Commitment-Soyatec::Implement->it.unisa.dia.jzks.qTMC/LibertYung_qTMC" source="//@children.5" target="//@children.4" targetEnd="//@children.5/@sourceConnections.5/@children.2" label="//@children.5/@sourceConnections.5/@children.0" sourceEnd="//@children.5/@sourceConnections.5/@children.1" connectionRouterKind="Manual">
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="it.unisa.dia.jzks.qTMC/Commitment-Soyatec::Implement->it.unisa.dia.jzks.qTMC/LibertYung_qTMC" source="//@children.5" target="//@children.4" targetEnd="//@children.5/@sourceConnections.4/@children.2" label="//@children.5/@sourceConnections.4/@children.0" sourceEnd="//@children.5/@sourceConnections.4/@children.1" connectionRouterKind="Manual">
       <children xsi:type="editmodel:WireLabelEditModel" name="«Implement»" size="59,14" anchorKind="MiddlePart"/>
-      <children xsi:type="editmodel:AssociationEndEditModel" location="0,144" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="0,308" attachSource="true"/>
       <children xsi:type="editmodel:AssociationEndEditModel" location="167,128"/>
     </sourceConnections>
     <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
