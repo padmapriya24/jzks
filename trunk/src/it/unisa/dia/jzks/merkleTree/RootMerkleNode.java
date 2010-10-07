@@ -169,6 +169,18 @@ public class RootMerkleNode extends InternalMerkleNode {
 	}
 
 	/**
+	 * Load the object from a XML byte array
+	 * 
+	 * @param root
+	 *            XML byte array
+	 */
+	public static RootMerkleNode loadFromXML(byte[] root) {
+		XStream xstream = getXStream();
+		RootMerkleNode r = (RootMerkleNode) xstream.fromXML(new String(root));
+		return r;
+	}
+
+	/**
 	 * @param commInfo
 	 *            the commInfo to set
 	 */
