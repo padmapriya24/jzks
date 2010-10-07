@@ -24,6 +24,12 @@ import java.util.logging.ConsoleHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import org.apache.commons.cli.BasicParser;
+import org.apache.commons.cli.CommandLine;
+import org.apache.commons.cli.HelpFormatter;
+import org.apache.commons.cli.Options;
+import org.apache.commons.cli.ParseException;
+
 public class BuildMerkleTree {
 
 	/**
@@ -33,72 +39,91 @@ public class BuildMerkleTree {
 			InvalidECParameterException, FileNotFoundException,
 			FailedZKSVerifyException, KeyMismatchZKSVerifyException,
 			NoSuchAlgorithmException, ParameterValueMismatch,
-			SecurityParameterNotSatisfied {
+			SecurityParameterNotSatisfied, ParseException {
+
+		Options opt = new Options();
+		opt.addOption("h", "help", false, "Print help for this application");
+		opt.addOption("b", "build", false, "Build");
+		opt.addOption("q", "qbits", true, "EC q bits");
+		opt.addOption("r", "rbits", true, "EC r bits");
+		opt.addOption("m", "qmer", true, "q Commitment");
+		opt.addOption("d", "hash", true, "Hash Algorithm");
+		opt.addOption("t", "tree", true, "Tree");
+		opt.addOption("o", "root", true, "Root");
+		opt.addOption("c", "check", false,
+				"Check if an element belongs to database");
+		opt.addOption("f", "find", true, "Key to find");
+		opt.addOption("v", "verify", false, "Verify");
+		opt.addOption("p", "proof", true, "Proof");
+		opt.addOption("a", "all", false, "All");
+		opt.addOption("V", "level", true, "Logger");
+
+		String what = new String();
+
+		BasicParser parser = new BasicParser();
+		CommandLine cl = parser.parse(opt, args);
+
+		if (cl.hasOption('h')) {
+			HelpFormatter f = new HelpFormatter();
+			f.printHelp("OptionsTip", opt);
+		}
+		if (cl.hasOption('b'))
+			what += "b";
+		if (cl.hasOption('v'))
+			what += "v";
+		if (cl.hasOption('c'))
+			what += "c";
+		if (cl.hasOption('a'))
+			what += "a";
 
 		Logger logger = Logger.getLogger("it.unisa.dia.jzks");
-		logger.setLevel(Level.INFO);
+		try {
+			logger.setLevel(Level.parse(cl.getOptionValue('V')));
+		} catch (NullPointerException e) {
+			logger.setLevel(Level.OFF);
+		}
 
-//		ConsoleHandler handler = new ConsoleHandler();
-//		handler.setLevel(Level.FINEST);
-//		logger.addHandler(handler);
+		ConsoleHandler handler = new ConsoleHandler();
+		handler.setLevel(Level.FINEST);
+		logger.addHandler(handler);
 
-		Logger logger2 = Logger.getLogger("en.ciao");
+		Logger logger2 = Logger.getLogger("it.unisa.dia.test");
 		logger2.info("START");
 
 		Hashtable<String, Object> ht = new Hashtable<String, Object>();
-		String key = "nome";
+		String key = "key";
+		String value = "value";
 
 		for (int i = 0; i < 10; i++)
-			ht.put((key + i), key);
+			ht.put((key + i), (value + i));
 
-		String what = new String();
-		String tofind = new String();
-		if (args.length == 1) {
-			what = args[0];
-			if (!what.equals("build")) {
-				System.out
-						.println("Usage: BuilderMerkleTree build|load|all [keyToFind]");
-				logger2.info("END");
-				return;
-			}
-		} else if (args.length == 2) {
-			what = args[0];
-			tofind = args[1];
-		} else {
-			System.out
-					.println("Usage: BuilderMerkleTree build|load|all [keyToFind]");
-			logger2.info("END");
-			return;
-		}
-
-		if (what.equals("build") || what.equals("all")) {
+		if ((what.indexOf("b") != -1) || (what.indexOf("a") != -1)) {
 
 			logger2.info("Building Merkle Tree...");
-			CommitmentMerkleTree comm = new CommitmentMerkleTree(160, 512, 16,
-					"SHA1");
+			CommitmentMerkleTree comm = new CommitmentMerkleTree(Integer
+					.parseInt(cl.getOptionValue('r')), Integer.parseInt(cl
+					.getOptionValue('q')), Integer.parseInt(cl
+					.getOptionValue('m')), cl.getOptionValue('d'));
 			comm.populateTreeLeaves(ht);
-			System.out.println("numero di nodi: " + comm.getTree().size());
-			// CommitmentInformations mi =
+			System.out.println("#nodes: " + comm.getTree().size());
 			comm.commit();
 
 			logger2.info("Saving Merkle Tree...");
-			comm.saveTreeToXML("tree.xml", "UTF-8");
+			comm.saveTreeToXML(cl.getOptionValue('t'), "UTF-8");
 			logger2.info("Saving Root...");
-			((RootMerkleNode) comm.getTree().root().element()).saveToXML(
-					"root.xml", "UTF-8");
+			((RootMerkleNode) comm.getTree().root().element()).saveToXML(cl
+					.getOptionValue('o'), "UTF-8");
 
 		}
-		if (what.equals("load") || what.equals("all")) {
-			logger2.info("Loading Merkle Tree...");
-			LinkedMerkleTree tree = LinkedMerkleTree.loadFromXML("booh.xml");
-			logger2.info("Loading Root...");
-			RootMerkleNode root = new RootMerkleNode();
-			// root = (RootMerkleNode) tree.root().element();
-			root = RootMerkleNode.loadFromXML("root.xml");
+		LinkedMerkleTree tree = null;
+		RootMerkleNode root = null;
 
-			logger2.info("Proofing " + tofind + "...");
+		if ((what.indexOf("c") != -1) || (what.indexOf("a") != -1)) {
+			logger2.info("Proofing " + cl.getOptionValue('f') + "...");
+			logger2.info("Loading Merkle Tree...");
+			tree = LinkedMerkleTree.loadFromXML(cl.getOptionValue('t'));
 			ZeroKnowledgeSet zks = new ZeroKnowledgeSet(ht, tree);
-			if (zks.belong(tofind))
+			if (zks.belong(cl.getOptionValue('f')))
 				System.out.println("Appartiene al DB");
 			else
 				System.out.println("NON appartiene al DB");
@@ -106,14 +131,19 @@ public class BuildMerkleTree {
 			logger2.info("Saving Proof...");
 			PiGreek pg = new PiGreek();
 			pg = zks.getPiGreek();
-			pg.saveToXML("piGreek.xml", "UTF-8");
+			pg.saveToXML(cl.getOptionValue('p'), "UTF-8");
+		}
 
+		if ((what.indexOf("v") != -1) || (what.indexOf("a") != -1)) {
+			logger2.info("Loading Root...");
+			root = RootMerkleNode.loadFromXML(cl.getOptionValue('o'));
 			logger2.info("Loading Proof...");
-			pg = PiGreek.loadFromXML("piGreek.xml");
+			PiGreek pg = new PiGreek();
+			pg = PiGreek.loadFromXML(cl.getOptionValue('p'));
 
 			logger2.info("Verifing Proof...");
 			ZKSVerifier ver = new ZKSVerifier();
-			System.out.println(ver.verifier(pg, tofind, root));
+			System.out.println(ver.verifier(pg, cl.getOptionValue('f'), root));
 		}
 		logger2.info("END");
 	}
