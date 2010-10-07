@@ -145,6 +145,20 @@ public class PiGreek extends ArrayList<Evidence> {
 	}
 
 	/**
+	 * Load the object from a XML byte array
+	 * 
+	 * @param xml
+	 *            XML byte array
+	 */
+	public static PiGreek loadFromXML(byte[] xml) {
+		XStream xstream = getXStream();
+
+		PiGreek pg = (PiGreek) xstream.fromXML(new String(xml));
+		return pg;
+
+	}
+
+	/**
 	 * Store all Commitment informations into a file XML
 	 * 
 	 * @param path
