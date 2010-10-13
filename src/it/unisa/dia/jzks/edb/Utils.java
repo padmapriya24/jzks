@@ -146,10 +146,10 @@ public class Utils {
 	 * @return Byte array of hash value
 	 */
 	public byte[] internalNodeHash(MerkleNode node) {
-		String stringtoHash = new String();
-		stringtoHash += node.getCommitment().getC();
-		stringtoHash += node.getCommitment().getV();
-		return makeHashValue(stringtoHash);
+		StringBuffer stringtoHash = new StringBuffer();
+		stringtoHash.append(node.getCommitment().getC());
+		stringtoHash.append(node.getCommitment().getV());
+		return makeHashValue(stringtoHash.toString());
 	}
 
 	/**
@@ -218,11 +218,12 @@ public class Utils {
 	 * @return The hex string
 	 */
 	public String getHexString(byte[] b) {
-		String result = "";
+		StringBuffer result = new StringBuffer();
 		for (int i = 0; i < b.length; i++) {
-			result += Integer.toString((b[i] & 0xff) + 0x100, 16).substring(1);
+			result.append(Integer.toString((b[i] & 0xff) + 0x100, 16)
+					.substring(1));
 		}
-		return result;
+		return result.toString();
 	}
 
 	/**

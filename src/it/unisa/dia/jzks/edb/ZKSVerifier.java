@@ -105,7 +105,7 @@ public class ZKSVerifier {
 		// LEAF
 		if (found) {
 			byte[] valueHash = utils.makeHashValue(piGreek.getValue());
-			logger.finer("HASH " + new BigInteger(valueHash).toString(2)
+			logger.finer("HASH " + new BigInteger(valueHash).abs().toString(2)
 					+ evidence.getC());
 
 			message.add(commitmentLeaves.getZr().newElement(

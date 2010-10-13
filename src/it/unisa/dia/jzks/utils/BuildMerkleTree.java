@@ -8,9 +8,9 @@ import it.unisa.dia.jzks.edb.CommitmentMerkleTree;
 import it.unisa.dia.jzks.edb.FailedZKSVerifyException;
 import it.unisa.dia.jzks.edb.InvalidECParameterException;
 import it.unisa.dia.jzks.edb.KeyMismatchZKSVerifyException;
-import it.unisa.dia.jzks.edb.ParameterValueMismatch;
+import it.unisa.dia.jzks.edb.ParameterValueMismatchException;
 import it.unisa.dia.jzks.edb.PiGreek;
-import it.unisa.dia.jzks.edb.SecurityParameterNotSatisfied;
+import it.unisa.dia.jzks.edb.SecurityParameterNotSatisfiedException;
 import it.unisa.dia.jzks.edb.ZKSVerifier;
 import it.unisa.dia.jzks.edb.ZeroKnowledgeSet;
 import it.unisa.dia.jzks.merkleTree.InvalidQParameterException;
@@ -38,8 +38,8 @@ public class BuildMerkleTree {
 	public static void main(String[] args) throws InvalidQParameterException,
 			InvalidECParameterException, FileNotFoundException,
 			FailedZKSVerifyException, KeyMismatchZKSVerifyException,
-			NoSuchAlgorithmException, ParameterValueMismatch,
-			SecurityParameterNotSatisfied, ParseException {
+			NoSuchAlgorithmException, ParameterValueMismatchException,
+			SecurityParameterNotSatisfiedException, ParseException {
 
 		Options opt = new Options();
 		opt.addOption("h", "help", false, "Print help for this application");
@@ -97,50 +97,57 @@ public class BuildMerkleTree {
 		for (int i = 0; i < 10; i++)
 			ht.put((key + i), (value + i));
 
-		if ((what.indexOf("b") != -1) || (what.indexOf("a") != -1)) {
-
-			logger2.info("Building Merkle Tree...");
-			CommitmentMerkleTree comm = new CommitmentMerkleTree(Integer
-					.parseInt(cl.getOptionValue('r')), Integer.parseInt(cl
-					.getOptionValue('q')), Integer.parseInt(cl
-					.getOptionValue('m')), cl.getOptionValue('d'));
-			comm.populateTreeLeaves(ht);
-			System.out.println("#nodes: " + comm.getTree().size());
-			comm.commit();
-
-			logger2.info("Saving Merkle Tree...");
-			comm.saveTreeToXML(cl.getOptionValue('t'), "UTF-8");
-			logger2.info("Saving Root...");
-			((RootMerkleNode) comm.getTree().root().element()).saveToXML(cl
-					.getOptionValue('o'), "UTF-8");
-
-		}
 		LinkedMerkleTree tree = null;
 		RootMerkleNode root = null;
 
-		if ((what.indexOf("c") != -1) || (what.indexOf("a") != -1)) {
-			logger2.info("Proofing " + cl.getOptionValue('f') + "...");
+		if ((what.indexOf("b") != -1) || (what.indexOf("a") != -1)) {
+
+			logger2.info("Building Merkle Tree...");
+			CommitmentMerkleTree comMerkleTree = new CommitmentMerkleTree(
+					Integer.parseInt(cl.getOptionValue('r')), Integer
+							.parseInt(cl.getOptionValue('q')), Integer
+							.parseInt(cl.getOptionValue('m')), cl
+							.getOptionValue('d'));
+			comMerkleTree.populateTreeLeaves(ht);
+			System.out.println("#nodes: " + comMerkleTree.getTree().size());
+			comMerkleTree.commit();
+
+			tree = comMerkleTree.getTree();
+			root = (RootMerkleNode) tree.root().element();
+
+			logger2.info("Saving Merkle Tree...");
+			comMerkleTree.saveTreeToXML(cl.getOptionValue('t'), "UTF-8");
+			logger2.info("Saving Root...");
+			((RootMerkleNode) comMerkleTree.getTree().root().element())
+					.saveToXML(cl.getOptionValue('o'), "UTF-8");
+
+		}
+
+		PiGreek pg = new PiGreek();
+		if (what.indexOf("c") != -1) {
 			logger2.info("Loading Merkle Tree...");
 			tree = LinkedMerkleTree.loadFromXML(cl.getOptionValue('t'));
+		}
+		if ((what.indexOf("c") != -1) || (what.indexOf("a") != -1)) {
 			ZeroKnowledgeSet zks = new ZeroKnowledgeSet(ht, tree);
+			logger2.info("Proving " + cl.getOptionValue('f') + "...");
 			if (zks.belong(cl.getOptionValue('f')))
 				System.out.println("Appartiene al DB");
 			else
 				System.out.println("NON appartiene al DB");
 
 			logger2.info("Saving Proof...");
-			PiGreek pg = new PiGreek();
 			pg = zks.getPiGreek();
 			pg.saveToXML(cl.getOptionValue('p'), "UTF-8");
 		}
 
-		if ((what.indexOf("v") != -1) || (what.indexOf("a") != -1)) {
+		if (what.indexOf("v") != -1) {
 			logger2.info("Loading Root...");
 			root = RootMerkleNode.loadFromXML(cl.getOptionValue('o'));
 			logger2.info("Loading Proof...");
-			PiGreek pg = new PiGreek();
 			pg = PiGreek.loadFromXML(cl.getOptionValue('p'));
-
+		}
+		if ((what.indexOf("v") != -1) || (what.indexOf("a") != -1)) {
 			logger2.info("Verifing Proof...");
 			ZKSVerifier ver = new ZKSVerifier();
 			System.out.println(ver.verifier(pg, cl.getOptionValue('f'), root));

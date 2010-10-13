@@ -8,8 +8,8 @@ import it.unisa.dia.gas.plaf.jpbc.pairing.CurveParams;
 import it.unisa.dia.jzks.edb.CommitmentInformations;
 import it.unisa.dia.jzks.edb.CommitmentMerkleTree;
 import it.unisa.dia.jzks.edb.InvalidECParameterException;
-import it.unisa.dia.jzks.edb.ParameterValueMismatch;
-import it.unisa.dia.jzks.edb.SecurityParameterNotSatisfied;
+import it.unisa.dia.jzks.edb.ParameterValueMismatchException;
+import it.unisa.dia.jzks.edb.SecurityParameterNotSatisfiedException;
 import it.unisa.dia.jzks.edb.TypeACurveGeneratorSafe;
 import it.unisa.dia.jzks.merkleTree.InvalidQParameterException;
 
@@ -54,9 +54,9 @@ public class CommitmetMerkleTreeTest extends TestCase {
 			fail("Invalid EC parameters");
 		} catch (NoSuchAlgorithmException e) {
 			fail("Hash algorithm not valid");
-		} catch (ParameterValueMismatch e) {
+		} catch (ParameterValueMismatchException e) {
 			fail("Digest length and q value not compatible");
-		} catch (SecurityParameterNotSatisfied e) {
+		} catch (SecurityParameterNotSatisfiedException e) {
 			fail("The depth of the tree does not satisfy the security parameter");
 		}
 	}
@@ -77,9 +77,9 @@ public class CommitmetMerkleTreeTest extends TestCase {
 			fail("Invalid EC parameters");
 		} catch (NoSuchAlgorithmException e) {
 			fail("Hash algorithm not valid");
-		} catch (ParameterValueMismatch e) {
+		} catch (ParameterValueMismatchException e) {
 			fail("Digest length and q value not compatible");
-		} catch (SecurityParameterNotSatisfied e) {
+		} catch (SecurityParameterNotSatisfiedException e) {
 			fail("The depth of the tree does not satisfy the security parameter");
 		}
 	}
@@ -100,9 +100,9 @@ public class CommitmetMerkleTreeTest extends TestCase {
 			fail("EC parameter not valid");
 		} catch (NoSuchAlgorithmException e) {
 			fail("Hash algorithm not valid");
-		} catch (ParameterValueMismatch e) {
+		} catch (ParameterValueMismatchException e) {
 			fail("Digest length and q value not compatible");
-		} catch (SecurityParameterNotSatisfied e) {
+		} catch (SecurityParameterNotSatisfiedException e) {
 			fail("The depth of the tree does not satisfy the security parameter");
 		}
 	}
@@ -122,9 +122,9 @@ public class CommitmetMerkleTreeTest extends TestCase {
 			fail("Invalid EC parameters");
 		} catch (NoSuchAlgorithmException e) {
 			fail("Hash algorithm not valid");
-		} catch (ParameterValueMismatch e) {
+		} catch (ParameterValueMismatchException e) {
 			fail("Digest length and q value not compatible");
-		} catch (SecurityParameterNotSatisfied e) {
+		} catch (SecurityParameterNotSatisfiedException e) {
 			fail("The depth of the tree does not satisfy the security parameter");
 		}
 	}
@@ -145,9 +145,9 @@ public class CommitmetMerkleTreeTest extends TestCase {
 			fail("EC parameter not valid");
 		} catch (NoSuchAlgorithmException e) {
 			fail("Hash algorithm not valid");
-		} catch (ParameterValueMismatch e) {
+		} catch (ParameterValueMismatchException e) {
 			fail("Digest length and q value not compatible");
-		} catch (SecurityParameterNotSatisfied e) {
+		} catch (SecurityParameterNotSatisfiedException e) {
 			fail("The depth of the tree does not satisfy the security parameter");
 		}
 	}
@@ -168,9 +168,9 @@ public class CommitmetMerkleTreeTest extends TestCase {
 			fail("EC parameter not valid");
 		} catch (NoSuchAlgorithmException e) {
 			fail("Hash algorithm not valid");
-		} catch (ParameterValueMismatch e) {
+		} catch (ParameterValueMismatchException e) {
 			fail("Digest length and q value not compatible");
-		} catch (SecurityParameterNotSatisfied e) {
+		} catch (SecurityParameterNotSatisfiedException e) {
 			fail("The depth of the tree does not satisfy the security parameter");
 		}
 	}
@@ -197,9 +197,9 @@ public class CommitmetMerkleTreeTest extends TestCase {
 			fail("Invalid EC parameters");
 		} catch (NoSuchAlgorithmException e) {
 			fail("Hash algorithm not valid");
-		} catch (ParameterValueMismatch e) {
+		} catch (ParameterValueMismatchException e) {
 			fail("Digest length and q value not compatible");
-		} catch (SecurityParameterNotSatisfied e) {
+		} catch (SecurityParameterNotSatisfiedException e) {
 			fail("The depth of the tree does not satisfy the security parameter");
 		}
 	}

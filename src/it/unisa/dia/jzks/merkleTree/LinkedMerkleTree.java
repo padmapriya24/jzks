@@ -99,8 +99,7 @@ public class LinkedMerkleTree implements MerkleTree {
 	 */
 	public LinkedMerkleTree() {
 		tree = new LinkedTree<MerkleNode>();
-		InternalMerkleNode root = addRoot();
-		tree.addRoot(root);
+		tree.addRoot(addRoot());
 	}
 
 	/**
@@ -120,6 +119,8 @@ public class LinkedMerkleTree implements MerkleTree {
 	 * 
 	 * @param index
 	 *            index of new internal Merkle node
+	 * @param path
+	 *            path of new internal Merkle node
 	 * @return the new Merkle node
 	 */
 	public MerkleNode createNode(int index, String path) {
@@ -173,54 +174,64 @@ public class LinkedMerkleTree implements MerkleTree {
 			throw new InvalidExternalMerkleNodeException(
 					"The node is not valid");
 
-		Position<MerkleNode> root = tree.root();
 		logger.finest("bitNode: " + bitNode);
-		int log = bitNode;
 
-		Position<MerkleNode> parent = root;
-		String localKey = MerkleNode.ROOT_PATH
-				+ completePath.substring(cursor, cursor + log);
+		Position<MerkleNode> parent = tree.root();
+		StringBuffer localKey = new StringBuffer();
+		localKey.append(MerkleNode.ROOT_PATH);
+		localKey.append(completePath.substring(cursor, cursor + bitNode));
 
-		while ((cursor + log + log) <= completePath.length()) {
-			logger.finer("INSERT (" + localKey + "): "
-					+ completePath.substring(0, cursor) + "("
-					+ completePath.substring(cursor, cursor + log) + ")"
-					+ completePath.substring(cursor + log));
+		String stringLocalKey;
+		StringBuffer log = new StringBuffer();
+
+		MalformedTreeException treeNotValid = new MalformedTreeException(
+				"Tree not valid.");
+
+		while ((cursor + bitNode + bitNode) <= completePath.length()) {
+			stringLocalKey = localKey.toString();
+			log.delete(0, log.length());
+			log.append("INSERT (");
+			log.append(stringLocalKey);
+			log.append("): ");
+			log.append(completePath.substring(0, cursor));
+			log.append("(");
+			log.append(completePath.substring(cursor, cursor + bitNode));
+			log.append(")");
+			log.append(completePath.substring(cursor + bitNode));
+			logger.finer(log.toString());
 			Position<MerkleNode> newParent = null;
 			if (tree.numberOfChild(parent) == 0)
-				newParent = addChildren(parent, localKey, log);
+				newParent = addChildren(parent, stringLocalKey, bitNode);
 			else if (tree.numberOfChild(parent) == q)
-				newParent = findChild(parent, localKey);
+				newParent = findChild(parent, stringLocalKey);
 			else
-				throw new MalformedTreeException("Tree not valid.");
+				throw treeNotValid;
 
 			if (newParent == null)
-				throw new MalformedTreeException("Tree not valid.");
+				throw treeNotValid;
 
 			parent = newParent;
-			cursor += log;
-			localKey = localKey + completePath.substring(cursor, cursor + log);
+			cursor += bitNode;
+			localKey.append(completePath.substring(cursor, cursor + bitNode));
 		}
 		Position<MerkleNode> newNode = null;
+		stringLocalKey = localKey.toString();
+		String stringPath;
+		StringBuffer path = new StringBuffer();
 		if (tree.numberOfChild(parent) == 0)
 			for (int i = 0; i < q; i++) {
-				String path = BigInteger.valueOf(i).toString(2);
-				int l = path.length();
-				for (int j = 0; j < (log - l); j++) {
-					path = "0" + path;
-				}
-				path = parent.element().getPath() + path;
-				if (path.equals(localKey)) {
-					logger.finer("0 - Leaf Full - " + path);
+				stringPath = indexToPath(i, path, parent.element().getPath());
+				if (stringPath.equals(stringLocalKey)) {
+					logger.finer("0 - Leaf Full - " + stringPath);
 					node.setIndex(i + 1);
-					node.setPath(path);
+					node.setPath(stringPath);
 					newNode = tree.add(parent, node);
 				} else {
-					logger.finer("0 - Leaf Empty - " + path);
+					logger.finer("0 - Leaf Empty - " + stringPath);
 					ExternalMerkleNode empty = new ExternalMerkleNode();
 					empty.setKey(MerkleNode.EMPTY_KEY);
 					empty.setIndex(i + 1);
-					empty.setPath(path);
+					empty.setPath(stringPath);
 					tree.add(parent, empty);
 				}
 			}
@@ -230,16 +241,11 @@ public class LinkedMerkleTree implements MerkleTree {
 			int i = 0;
 			while (children.hasNext()) {
 				Position<MerkleNode> current = children.next();
-				String path = BigInteger.valueOf(i).toString(2);
-				int l = path.length();
-				for (int j = 0; j < (log - l); j++) {
-					path = "0" + path;
-				}
-				path = parent.element().getPath() + path;
-				if (path.equals(localKey)) {
-					logger.finer("q - Leaf Replace - " + path);
+				stringPath = indexToPath(i, path, parent.element().getPath());
+				if (stringPath.equals(stringLocalKey)) {
+					logger.finer("q - Leaf Replace - " + stringPath);
 					node.setIndex(i + 1);
-					node.setPath(path);
+					node.setPath(stringPath);
 					if (((ExternalMerkleNode) current.element()).getKey()
 							.equals(MerkleNode.EMPTY_KEY))
 						tree.replace(current, node);
@@ -251,9 +257,30 @@ public class LinkedMerkleTree implements MerkleTree {
 				i++;
 			}
 		} else
-			throw new MalformedTreeException("Tree not valid.");
+			throw treeNotValid;
 
 		return newNode;
+	}
+
+	/**
+	 * Build the path String from a node index and his parent path
+	 * 
+	 * @param index
+	 *            Node index
+	 * @param path
+	 *            StringBuffer to build the path
+	 * @param ParPath
+	 *            Parent node path
+	 * @return Path string of node with index "index"
+	 */
+	private String indexToPath(int index, StringBuffer path, String ParPath) {
+		path.delete(0, path.length());
+		path.append(BigInteger.valueOf(index).abs().toString(2));
+		int l = path.length();
+		for (int j = 0; j < (bitNode - l); j++)
+			path.insert(0, "0");
+		path.insert(0, ParPath);
+		return path.toString();
 	}
 
 	/**
@@ -270,6 +297,8 @@ public class LinkedMerkleTree implements MerkleTree {
 	private Position<MerkleNode> addChildren(Position<MerkleNode> parent,
 			String localKey, int log) {
 		Position<MerkleNode> newParent = null;
+		StringBuffer path = new StringBuffer();
+		String stringPath;
 
 		// if we want to implement an arbitrary tree height, we need to modify
 		// this method:
@@ -283,16 +312,11 @@ public class LinkedMerkleTree implements MerkleTree {
 		// height
 		// it's needed modify the tree building process!! (e na parola!)
 		for (int i = 0; i < q; i++) {
-			String path = BigInteger.valueOf(i).toString(2);
-			int l = path.length();
-			for (int j = 0; j < (log - l); j++) {
-				path = "0" + path;
-			}
-			path = parent.element().getPath() + path;
+			stringPath = indexToPath(i, path, parent.element().getPath());
 			InternalMerkleNode newnode = (InternalMerkleNode) createNode(i + 1,
-					path);
+					stringPath);
 			Position<MerkleNode> newNodePos = tree.add(parent, newnode);
-			if (path.equals(localKey))
+			if (path.toString().equals(localKey))
 				newParent = newNodePos;
 		}
 		return newParent;
@@ -317,8 +341,7 @@ public class LinkedMerkleTree implements MerkleTree {
 		}
 		while (iter.hasNext()) {
 			Position<MerkleNode> current = iter.next();
-			String path = current.element().getPath();
-			if (path.equals(localKey))
+			if (current.element().getPath().equals(localKey))
 				return current;
 		}
 		return null;
@@ -498,21 +521,6 @@ public class LinkedMerkleTree implements MerkleTree {
 	public int getLambda() {
 		return lambda;
 	}
-
-	/**
-	 * Fix the length of a string (usually a path or key) to the lambda value
-	 * 
-	 * @param str
-	 *            String to fix
-	 * @return String fixed
-	 */
-	// public String fixLen(String str) {
-	// int len = str.length();
-	// for (int j = 0; j < (lambda - len); j++) {
-	// str = "0" + str;
-	// }
-	// return str;
-	// }
 
 	/**
 	 * Set the elements of the object XStream that are used into the file xml to

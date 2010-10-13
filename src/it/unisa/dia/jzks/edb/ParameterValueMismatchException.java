@@ -7,11 +7,11 @@ package it.unisa.dia.jzks.edb;
 /**
  * Tree or Commitment parameters value are not compatible
  */
-public class ParameterValueMismatch extends Exception {
+public class ParameterValueMismatchException extends Exception {
 
 	private static final long serialVersionUID = 1L;
 
-	public ParameterValueMismatch(String message) {
+	public ParameterValueMismatchException(String message) {
 		super(message);
 	}
 }

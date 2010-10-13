@@ -235,16 +235,17 @@ public class ZeroKnowledgeSet {
 	public boolean belong(String key) {
 		byte[] keyHash = utils.makeHashValue(key);
 		String path = new BigInteger(keyHash).abs().toString(2);
-		// path = tree.fixLen(path);
 		logger.fine("PATH: " + path);
 
 		int cursor = 0;
 		Position<MerkleNode> parent = tree.root();
 		int log = ((Double) (Math.log(tree.getQ()) / Math.log(2))).intValue();
-		String localKey = MerkleNode.ROOT_PATH;
+		StringBuffer localKey = new StringBuffer();
+		localKey.append(MerkleNode.ROOT_PATH);
 		while ((cursor + log) <= path.length()) {
-			localKey = localKey + path.substring(cursor, cursor + log);
-			Position<MerkleNode> child = tree.findChild(parent, localKey);
+			localKey.append(path.substring(cursor, cursor + log));
+			Position<MerkleNode> child = tree.findChild(parent, localKey
+					.toString());
 			if (child == null) {
 				piGreek = proofNoMembership(parent, key, cursor);
 				return false;
@@ -408,7 +409,6 @@ public class ZeroKnowledgeSet {
 
 		byte[] keyHash = utils.makeHashValue(key);
 		String path = new BigInteger(keyHash).abs().toString(2);
-		// path = tree.fixLen(path);
 
 		logger.info("Proof NO " + key + "=>" + path);
 
@@ -528,6 +528,7 @@ public class ZeroKnowledgeSet {
 			// SubTree commitment
 			Iterator<Position<MerkleNode>> nodeIter = subTree
 					.postOrderInternal();
+			ArrayList<Element> messages = new ArrayList<Element>();
 			while (nodeIter.hasNext()) {
 				TreePosition<MerkleNode> nodePos = (TreePosition<MerkleNode>) nodeIter
 						.next();
@@ -543,7 +544,7 @@ public class ZeroKnowledgeSet {
 
 				if (subTree.numberOfChildren(nodePos) > 0) {
 
-					ArrayList<Element> messages = new ArrayList<Element>();
+					messages.clear();
 					// TODO
 					messages.add(commitment.getZr().newZeroElement());
 					for (int i = 1; i <= tree.getQ(); i++)
@@ -592,7 +593,7 @@ public class ZeroKnowledgeSet {
 
 				byte[] valueHash = utils.internalNodeHash(childNodePos
 						.element());
-				logger.finer("HASH " + new BigInteger(valueHash).toString(2));
+				logger.finer("HASH " + new BigInteger(valueHash).abs().toString(2));
 
 				Element mi = commitment.getZr().newElement(
 						new BigInteger(valueHash));
@@ -640,7 +641,7 @@ public class ZeroKnowledgeSet {
 			int i = childNodePos.element().getIndex();
 
 			byte[] valueHash = utils.internalNodeHash(childNodePos.element());
-			logger.finer("HASH " + new BigInteger(valueHash).toString(2)
+			logger.finer("HASH " + new BigInteger(valueHash).abs().toString(2)
 					+ childNodePos.element().getCommitment().getC());
 
 			Element mi = commitment.getZr().newElement(
