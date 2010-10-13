@@ -7,11 +7,11 @@ package it.unisa.dia.jzks.edb;
 /**
  * The depth of the tree does not satisfy the security parameter
  */
-public class SecurityParameterNotSatisfied extends Exception {
+public class SecurityParameterNotSatisfiedException extends Exception {
 
 	private static final long serialVersionUID = 1L;
 
-	public SecurityParameterNotSatisfied(String message) {
+	public SecurityParameterNotSatisfiedException(String message) {
 		super(message);
 	}
 

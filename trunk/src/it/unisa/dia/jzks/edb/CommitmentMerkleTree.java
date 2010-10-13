@@ -56,13 +56,6 @@ public class CommitmentMerkleTree {
 	private LinkedMerkleTree tree;
 
 	/**
-	 * @return the tree
-	 */
-	public LinkedMerkleTree getTree() {
-		return tree;
-	}
-
-	/**
 	 * Commitment information for internal nodes commitment operations
 	 */
 	private Commitment commitment;
@@ -116,17 +109,17 @@ public class CommitmentMerkleTree {
 	 *             Invalid q parameter
 	 * @throws InvalidECParameterException
 	 *             Invalid elliptic curve parameters
-	 * @throws ParameterValueMismatch
+	 * @throws ParameterValueMismatchException
 	 *             The digest length and the q value are not compatible
 	 * @throws NoSuchAlgorithmException
 	 *             Hash algorithm not valid
-	 * @throws SecurityParameterNotSatisfied
+	 * @throws SecurityParameterNotSatisfiedException
 	 *             The depth of the tree does not satisfy the security parameter
 	 */
 	public CommitmentMerkleTree(String ECParameters, int q, String hashAlgo)
 			throws InvalidQParameterException, InvalidECParameterException,
-			NoSuchAlgorithmException, ParameterValueMismatch,
-			SecurityParameterNotSatisfied {
+			NoSuchAlgorithmException, ParameterValueMismatchException,
+			SecurityParameterNotSatisfiedException {
 
 		CurveParams curveParams;
 		try {
@@ -154,17 +147,17 @@ public class CommitmentMerkleTree {
 	 *             Invalid q parameter
 	 * @throws InvalidECParameterException
 	 *             Invalid elliptic curve parameters
-	 * @throws ParameterValueMismatch
+	 * @throws ParameterValueMismatchException
 	 *             The digest length and the q value are not compatible
 	 * @throws NoSuchAlgorithmException
 	 *             Hash algorithm not valid
-	 * @throws SecurityParameterNotSatisfied
+	 * @throws SecurityParameterNotSatisfiedException
 	 *             The depth of the tree does not satisfy the security parameter
 	 */
 	public CommitmentMerkleTree(int rBits, int qBits, int q, String hashAlgo)
 			throws InvalidQParameterException, InvalidECParameterException,
-			NoSuchAlgorithmException, ParameterValueMismatch,
-			SecurityParameterNotSatisfied {
+			NoSuchAlgorithmException, ParameterValueMismatchException,
+			SecurityParameterNotSatisfiedException {
 
 		TypeACurveGeneratorSafe curveGenerator = new TypeACurveGeneratorSafe(
 				rBits, qBits);
@@ -190,17 +183,17 @@ public class CommitmentMerkleTree {
 	 *             Invalid q parameter
 	 * @throws InvalidECParameterException
 	 *             Invalid elliptic curve parameters
-	 * @throws ParameterValueMismatch
+	 * @throws ParameterValueMismatchException
 	 *             The digest length and the q value are not compatible
 	 * @throws NoSuchAlgorithmException
 	 *             Hash algorithm not valid
-	 * @throws SecurityParameterNotSatisfied
+	 * @throws SecurityParameterNotSatisfiedException
 	 *             The depth of the tree does not satisfy the security parameter
 	 */
 	public CommitmentMerkleTree(CurveParams curveParams, int q, String hashAlgo)
 			throws InvalidQParameterException, InvalidECParameterException,
-			NoSuchAlgorithmException, ParameterValueMismatch,
-			SecurityParameterNotSatisfied {
+			NoSuchAlgorithmException, ParameterValueMismatchException,
+			SecurityParameterNotSatisfiedException {
 
 		init(curveParams, q, 0, hashAlgo);
 
@@ -217,17 +210,17 @@ public class CommitmentMerkleTree {
 	 *             Invalid q parameter
 	 * @throws InvalidECParameterException
 	 *             Invalid elliptic curve parameters
-	 * @throws ParameterValueMismatch
+	 * @throws ParameterValueMismatchException
 	 *             The digest length and the q value are not compatible
 	 * @throws NoSuchAlgorithmException
 	 *             Hash algorithm not valid
-	 * @throws SecurityParameterNotSatisfied
+	 * @throws SecurityParameterNotSatisfiedException
 	 *             The depth of the tree does not satisfy the security parameter
 	 */
 	public CommitmentMerkleTree(CurveParams curveParams, int q)
 			throws InvalidQParameterException, InvalidECParameterException,
-			NoSuchAlgorithmException, ParameterValueMismatch,
-			SecurityParameterNotSatisfied {
+			NoSuchAlgorithmException, ParameterValueMismatchException,
+			SecurityParameterNotSatisfiedException {
 
 		init(curveParams, q, 0, Utils.DEFAULT_HASH_ALGO);
 
@@ -244,17 +237,17 @@ public class CommitmentMerkleTree {
 	 *             Invalid q parameter
 	 * @throws InvalidECParameterException
 	 *             Invalid elliptic curve parameters
-	 * @throws ParameterValueMismatch
+	 * @throws ParameterValueMismatchException
 	 *             The digest length and the q value are not compatible
 	 * @throws NoSuchAlgorithmException
 	 *             Hash algorithm not valid
-	 * @throws SecurityParameterNotSatisfied
+	 * @throws SecurityParameterNotSatisfiedException
 	 *             The depth of the tree does not satisfy the security parameter
 	 */
 	public CommitmentMerkleTree(int rBits, int qBits)
 			throws InvalidQParameterException, InvalidECParameterException,
-			NoSuchAlgorithmException, ParameterValueMismatch,
-			SecurityParameterNotSatisfied {
+			NoSuchAlgorithmException, ParameterValueMismatchException,
+			SecurityParameterNotSatisfiedException {
 		this(rBits, qBits, DEFAULT_Q, Utils.DEFAULT_HASH_ALGO);
 	}
 
@@ -271,17 +264,17 @@ public class CommitmentMerkleTree {
 	 *             Invalid q parameter
 	 * @throws InvalidECParameterException
 	 *             Invalid elliptic curve parameters
-	 * @throws ParameterValueMismatch
+	 * @throws ParameterValueMismatchException
 	 *             The digest length and the q value are not compatible
 	 * @throws NoSuchAlgorithmException
 	 *             Hash algorithm not valid
-	 * @throws SecurityParameterNotSatisfied
+	 * @throws SecurityParameterNotSatisfiedException
 	 *             The depth of the tree does not satisfy the security parameter
 	 */
 	public CommitmentMerkleTree(int rBits, int qBits, int q)
 			throws InvalidQParameterException, InvalidECParameterException,
-			NoSuchAlgorithmException, ParameterValueMismatch,
-			SecurityParameterNotSatisfied {
+			NoSuchAlgorithmException, ParameterValueMismatchException,
+			SecurityParameterNotSatisfiedException {
 		this(rBits, qBits, q, Utils.DEFAULT_HASH_ALGO);
 	}
 
@@ -294,17 +287,17 @@ public class CommitmentMerkleTree {
 	 *             Invalid q parameter
 	 * @throws InvalidECParameterException
 	 *             Invalid elliptic curve parameters
-	 * @throws ParameterValueMismatch
+	 * @throws ParameterValueMismatchException
 	 *             The digest length and the q value are not compatible
 	 * @throws NoSuchAlgorithmException
 	 *             Hash algorithm not valid
-	 * @throws SecurityParameterNotSatisfied
+	 * @throws SecurityParameterNotSatisfiedException
 	 *             The depth of the tree does not satisfy the security parameter
 	 */
 	public CommitmentMerkleTree(String ECParameters)
 			throws InvalidQParameterException, InvalidECParameterException,
-			NoSuchAlgorithmException, ParameterValueMismatch,
-			SecurityParameterNotSatisfied {
+			NoSuchAlgorithmException, ParameterValueMismatchException,
+			SecurityParameterNotSatisfiedException {
 		this(ECParameters, DEFAULT_Q);
 	}
 
@@ -319,17 +312,17 @@ public class CommitmentMerkleTree {
 	 *             Invalid q parameter
 	 * @throws InvalidECParameterException
 	 *             Invalid elliptic curve parameters
-	 * @throws ParameterValueMismatch
+	 * @throws ParameterValueMismatchException
 	 *             The digest length and the q value are not compatible
 	 * @throws NoSuchAlgorithmException
 	 *             Hash algorithm not valid
-	 * @throws SecurityParameterNotSatisfied
+	 * @throws SecurityParameterNotSatisfiedException
 	 *             The depth of the tree does not satisfy the security parameter
 	 */
 	public CommitmentMerkleTree(String ECParameters, int q)
 			throws InvalidQParameterException, InvalidECParameterException,
-			NoSuchAlgorithmException, ParameterValueMismatch,
-			SecurityParameterNotSatisfied {
+			NoSuchAlgorithmException, ParameterValueMismatchException,
+			SecurityParameterNotSatisfiedException {
 		this(ECParameters, q, Utils.DEFAULT_HASH_ALGO);
 	}
 
@@ -348,17 +341,17 @@ public class CommitmentMerkleTree {
 	 *             Invalid q parameter
 	 * @throws InvalidECParameterException
 	 *             Invalid elliptic curve parameters
-	 * @throws ParameterValueMismatch
+	 * @throws ParameterValueMismatchException
 	 *             The digest length and the q value are not compatible
 	 * @throws NoSuchAlgorithmException
 	 *             Hash algorithm not valid
-	 * @throws SecurityParameterNotSatisfied
+	 * @throws SecurityParameterNotSatisfiedException
 	 *             The depth of the tree does not satisfy the security parameter
 	 */
 	public CommitmentMerkleTree(String ECParameters, int q, int height,
 			String hashAlgo) throws InvalidQParameterException,
 			InvalidECParameterException, NoSuchAlgorithmException,
-			ParameterValueMismatch, SecurityParameterNotSatisfied {
+			ParameterValueMismatchException, SecurityParameterNotSatisfiedException {
 
 		CurveParams curveParams;
 		try {
@@ -389,17 +382,17 @@ public class CommitmentMerkleTree {
 	 *             Invalid q parameter
 	 * @throws InvalidECParameterException
 	 *             Invalid elliptic curve parameters
-	 * @throws ParameterValueMismatch
+	 * @throws ParameterValueMismatchException
 	 *             The digest length and the q value are not compatible
 	 * @throws NoSuchAlgorithmException
 	 *             Hash algorithm not valid
-	 * @throws SecurityParameterNotSatisfied
+	 * @throws SecurityParameterNotSatisfiedException
 	 *             The depth of the tree does not satisfy the security parameter
 	 */
 	public CommitmentMerkleTree(int rBits, int qBits, int q, int height,
 			String hashAlgo) throws InvalidQParameterException,
 			InvalidECParameterException, NoSuchAlgorithmException,
-			ParameterValueMismatch, SecurityParameterNotSatisfied {
+			ParameterValueMismatchException, SecurityParameterNotSatisfiedException {
 
 		TypeACurveGeneratorSafe curveGenerator = new TypeACurveGeneratorSafe(
 				rBits, qBits);
@@ -428,17 +421,17 @@ public class CommitmentMerkleTree {
 	 *             Invalid q parameter
 	 * @throws InvalidECParameterException
 	 *             Invalid elliptic curve parameters
-	 * @throws ParameterValueMismatch
+	 * @throws ParameterValueMismatchException
 	 *             The digest length and the q value are not compatible
 	 * @throws NoSuchAlgorithmException
 	 *             Hash algorithm not valid
-	 * @throws SecurityParameterNotSatisfied
+	 * @throws SecurityParameterNotSatisfiedException
 	 *             The depth of the tree does not satisfy the security parameter
 	 */
 	public CommitmentMerkleTree(CurveParams curveParams, int q, int height,
 			String hashAlgo) throws InvalidQParameterException,
 			InvalidECParameterException, NoSuchAlgorithmException,
-			ParameterValueMismatch, SecurityParameterNotSatisfied {
+			ParameterValueMismatchException, SecurityParameterNotSatisfiedException {
 
 		init(curveParams, q, height, hashAlgo);
 
@@ -459,17 +452,17 @@ public class CommitmentMerkleTree {
 	 *             Invalid q parameter
 	 * @throws InvalidECParameterException
 	 *             Invalid elliptic curve parameters
-	 * @throws ParameterValueMismatch
+	 * @throws ParameterValueMismatchException
 	 *             The digest length and the q value are not compatible
 	 * @throws NoSuchAlgorithmException
 	 *             Hash algorithm not valid
-	 * @throws SecurityParameterNotSatisfied
+	 * @throws SecurityParameterNotSatisfiedException
 	 *             The depth of the tree does not satisfy the security parameter
 	 */
 	public CommitmentMerkleTree(int rBits, int qBits, int q, int height)
 			throws InvalidQParameterException, InvalidECParameterException,
-			NoSuchAlgorithmException, ParameterValueMismatch,
-			SecurityParameterNotSatisfied {
+			NoSuchAlgorithmException, ParameterValueMismatchException,
+			SecurityParameterNotSatisfiedException {
 		this(rBits, qBits, q, height, Utils.DEFAULT_HASH_ALGO);
 	}
 
@@ -486,17 +479,17 @@ public class CommitmentMerkleTree {
 	 *             Invalid q parameter
 	 * @throws InvalidECParameterException
 	 *             Invalid elliptic curve parameters
-	 * @throws ParameterValueMismatch
+	 * @throws ParameterValueMismatchException
 	 *             The digest length and the q value are not compatible
 	 * @throws NoSuchAlgorithmException
 	 *             Hash algorithm not valid
-	 * @throws SecurityParameterNotSatisfied
+	 * @throws SecurityParameterNotSatisfiedException
 	 *             The depth of the tree does not satisfy the security parameter
 	 */
 	public CommitmentMerkleTree(String ECParameters, int q, int height)
 			throws InvalidQParameterException, InvalidECParameterException,
-			NoSuchAlgorithmException, ParameterValueMismatch,
-			SecurityParameterNotSatisfied {
+			NoSuchAlgorithmException, ParameterValueMismatchException,
+			SecurityParameterNotSatisfiedException {
 		this(ECParameters, q, height, Utils.DEFAULT_HASH_ALGO);
 	}
 
@@ -514,17 +507,17 @@ public class CommitmentMerkleTree {
 	 *             Invalid q parameter for qMercurial Commitments
 	 * @throws InvalidECParameterException
 	 *             Invalid elliptic curve parameters
-	 * @throws ParameterValueMismatch
+	 * @throws ParameterValueMismatchException
 	 *             The digest length and the q value are not compatible
 	 * @throws NoSuchAlgorithmException
 	 *             Hash algorithm not valid
-	 * @throws SecurityParameterNotSatisfied
+	 * @throws SecurityParameterNotSatisfiedException
 	 *             The depth of the tree does not satisfy the security parameter
 	 */
 	private void init(CurveParams curveParams, int q, int height,
 			String hashAlgo) throws InvalidQParameterException,
-			InvalidECParameterException, ParameterValueMismatch,
-			NoSuchAlgorithmException, SecurityParameterNotSatisfied {
+			InvalidECParameterException, ParameterValueMismatchException,
+			NoSuchAlgorithmException, SecurityParameterNotSatisfiedException {
 
 		// Checks on r parameter
 		BigInteger r = new BigInteger(curveParams.get("r"));
@@ -558,11 +551,11 @@ public class CommitmentMerkleTree {
 			bitNode = ((Double) (Math.log(tree.getQ()) / Math.log(2)))
 					.intValue();
 			if ((utils.getDigestLength() % bitNode) != 0)
-				throw new ParameterValueMismatch(
+				throw new ParameterValueMismatchException(
 						"The digest length and the q value are not compatible");
 		} else {
 			if ((utils.getDigestLength() % height) != 0)
-				throw new ParameterValueMismatch(
+				throw new ParameterValueMismatchException(
 						"The digest lenght and the tree height are not compatible"
 								+ lambda + height);
 			bitNode = lambda / height;
@@ -570,11 +563,11 @@ public class CommitmentMerkleTree {
 
 		// check hash length and q value
 		if ((utils.getDigestLength() % bitNode) != 0)
-			throw new ParameterValueMismatch(
+			throw new ParameterValueMismatchException(
 					"The digest length and the tree height are not compatible: "
 							+ bitNode);
 		if (utils.getDigestLength() < lambda)
-			throw new SecurityParameterNotSatisfied(
+			throw new SecurityParameterNotSatisfiedException(
 					"The digest length does not satisfy the security parameter: "
 							+ lambda);
 		else
@@ -615,6 +608,8 @@ public class CommitmentMerkleTree {
 			return false;
 		}
 
+		ArrayList<Element> message = new ArrayList<Element>();
+
 		while (en.hasMoreElements()) {
 			String key = en.nextElement();
 			ExternalMerkleNode node = new ExternalMerkleNode();
@@ -624,7 +619,7 @@ public class CommitmentMerkleTree {
 
 			logger.info("Inserting " + key);
 
-			ArrayList<Element> message = new ArrayList<Element>();
+			message.clear();
 
 			// TODO
 			message.add(commitmentLeaves.getZr().newOneElement());
@@ -714,12 +709,22 @@ public class CommitmentMerkleTree {
 	}
 
 	/**
+	 * Get the Tree
+	 * 
+	 * @return The LinkedMerkleTree
+	 */
+	public LinkedMerkleTree getTree() {
+		return tree;
+	}
+
+	/**
 	 * Commit the whole tree
 	 * 
 	 * @return All commitment informations needed by users
 	 */
 	public CommitmentInformations commit() {
 		Iterator<Position<MerkleNode>> nodeIter = tree.postOrderInternal();
+		ArrayList<Element> message = new ArrayList<Element>();
 		while (nodeIter.hasNext()) {
 			TreePosition<MerkleNode> nodePos = (TreePosition<MerkleNode>) nodeIter
 					.next();
@@ -730,7 +735,7 @@ public class CommitmentMerkleTree {
 
 			if (tree.numberOfChildren(nodePos) > 0) {
 
-				ArrayList<Element> message = new ArrayList<Element>();
+				message.clear();
 
 				// TODO
 				message.add(commitment.getZr().newZeroElement());
@@ -740,6 +745,10 @@ public class CommitmentMerkleTree {
 
 				Iterator<Position<MerkleNode>> iterChild = nodePos
 						.getChildren().iterator();
+				ArrayList<Element> m = new ArrayList<Element>();
+				// TODO
+				m.add(commitmentLeaves.getZr().newZeroElement());
+				m.add(commitmentLeaves.getZr().newZeroElement());
 				while (iterChild.hasNext()) {
 					Position<MerkleNode> current = iterChild.next();
 
@@ -749,11 +758,6 @@ public class CommitmentMerkleTree {
 								.element();
 						if (element.getKey().equals(MerkleNode.EMPTY_KEY)) {
 							logger.info("Zero commitment " + element.getPath());
-							ArrayList<Element> m = new ArrayList<Element>();
-
-							// TODO
-							m.add(commitmentLeaves.getZr().newOneElement());
-							m.add(commitmentLeaves.getZr().newZeroElement());
 
 							OutputCommit oc = commitmentLeaves.qHCom(
 									commitmentKeysLeaves.getPk(), m);
