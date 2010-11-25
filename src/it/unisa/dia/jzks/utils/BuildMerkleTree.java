@@ -50,13 +50,15 @@ public class BuildMerkleTree {
 		opt.addOption("d", "hash", true, "Hash Algorithm");
 		opt.addOption("t", "tree", true, "Tree");
 		opt.addOption("o", "root", true, "Root");
-		opt.addOption("c", "check", false,
+		opt.addOption("c", "prove", false,
 				"Check if an element belongs to database");
 		opt.addOption("f", "find", true, "Key to find");
 		opt.addOption("v", "verify", false, "Verify");
 		opt.addOption("p", "proof", true, "Proof");
 		opt.addOption("a", "all", false, "All");
 		opt.addOption("V", "level", true, "Logger");
+		opt.addOption("w", "wrapper", false, "Wrapper");
+		opt.addOption("s", "size", true, "Database size");
 
 		String what = new String();
 
@@ -76,25 +78,32 @@ public class BuildMerkleTree {
 		if (cl.hasOption('a'))
 			what += "a";
 
+		Logger logger2 = Logger.getLogger("it.unisa.dia.test");
+			
 		Logger logger = Logger.getLogger("it.unisa.dia.jzks");
 		try {
 			logger.setLevel(Level.parse(cl.getOptionValue('V')));
+			// remove the default ConsoleHandler specified in JRE logging
+			// configuration file
+			logger.getParent().removeHandler(logger.getParent().getHandlers()[0]);
+
+			ConsoleHandler handler = new ConsoleHandler();
+			handler.setLevel(Level.FINEST);
+			logger.addHandler(handler);
+			logger2.addHandler(handler);
 		} catch (NullPointerException e) {
 			logger.setLevel(Level.OFF);
 		}
 
-		ConsoleHandler handler = new ConsoleHandler();
-		handler.setLevel(Level.FINEST);
-		logger.addHandler(handler);
-
-		Logger logger2 = Logger.getLogger("it.unisa.dia.test");
 		logger2.info("START");
-
+		
 		Hashtable<String, Object> ht = new Hashtable<String, Object>();
 		String key = "key";
 		String value = "value";
-
-		for (int i = 0; i < 10; i++)
+		int size = 10;
+		if (cl.hasOption('s'))
+			size = Integer.parseInt(cl.getOptionValue('s'));
+		for (int i = 0; i < size; i++)
 			ht.put((key + i), (value + i));
 
 		LinkedMerkleTree tree = null;
@@ -107,7 +116,7 @@ public class BuildMerkleTree {
 					Integer.parseInt(cl.getOptionValue('r')), Integer
 							.parseInt(cl.getOptionValue('q')), Integer
 							.parseInt(cl.getOptionValue('m')), cl
-							.getOptionValue('d'));
+							.getOptionValue('d'), cl.hasOption('w'));
 			comMerkleTree.populateTreeLeaves(ht);
 			System.out.println("#nodes: " + comMerkleTree.getTree().size());
 			comMerkleTree.commit();

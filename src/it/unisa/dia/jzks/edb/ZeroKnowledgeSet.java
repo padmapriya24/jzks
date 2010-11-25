@@ -176,9 +176,10 @@ public class ZeroKnowledgeSet {
 		ArrayList<Element> pk = commitmentKeysLeaves;
 
 		try {
-			opening = commitmentLeaves.qHOpen(pk, commitmentLeaves.getZr()
-					.newElement(new BigInteger(valueHash)), 1, node
-					.getCommitment().getAux());
+			Element m = commitmentLeaves.getZr().newElement();
+			m.set(new BigInteger(valueHash));
+			opening = commitmentLeaves.qHOpen(pk, m, 1, node.getCommitment()
+					.getAux());
 		} catch (MessageMismatchException e1) {
 			logger
 					.severe("The message in commitment informations and the message in the node mismatch");
@@ -204,8 +205,8 @@ public class ZeroKnowledgeSet {
 			valueHash = utils.internalNodeHash(childNodePos.element());
 			pk = commitmentKeys;
 
-			Element mi = commitment.getZr().newElement(
-					new BigInteger(valueHash));
+			Element mi = commitment.getZr().newElement();
+			mi.set(new BigInteger(valueHash));
 
 			try {
 				opening = commitment.qHOpen(pk, mi, i, parentNode
@@ -557,8 +558,9 @@ public class ZeroKnowledgeSet {
 
 						byte[] valueHash = utils.internalNodeHash(current
 								.element());
-						messages.set(current.element().getIndex(), commitment
-								.getZr().newElement(new BigInteger(valueHash)));
+						Element m = commitment.getZr().newElement();
+						m.set(new BigInteger(valueHash));
+						messages.set(current.element().getIndex(), m);
 					}
 
 					outputCommit = commitment.qHComPr(commitmentKeys, messages,
@@ -593,10 +595,11 @@ public class ZeroKnowledgeSet {
 
 				byte[] valueHash = utils.internalNodeHash(childNodePos
 						.element());
-				logger.finer("HASH " + new BigInteger(valueHash).abs().toString(2));
+				logger.finer("HASH "
+						+ new BigInteger(valueHash).abs().toString(2));
 
-				Element mi = commitment.getZr().newElement(
-						new BigInteger(valueHash));
+				Element mi = commitment.getZr().newElement();
+				mi.set(new BigInteger(valueHash));
 
 				logger.fine("SubTree Opening " + nodeIn.getPath() + "=>" + "("
 						+ index + ")" + mi + " - " + nodeIn.getFlag());
@@ -644,8 +647,8 @@ public class ZeroKnowledgeSet {
 			logger.finer("HASH " + new BigInteger(valueHash).abs().toString(2)
 					+ childNodePos.element().getCommitment().getC());
 
-			Element mi = commitment.getZr().newElement(
-					new BigInteger(valueHash));
+			Element mi = commitment.getZr().newElement();
+			mi.set(new BigInteger(valueHash));
 
 			logger.fine("Tree Opening " + parentNode.getPath() + "=>" + "(" + i
 					+ ")" + mi);
