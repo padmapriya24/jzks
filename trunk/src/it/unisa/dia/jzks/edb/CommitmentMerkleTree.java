@@ -9,6 +9,8 @@ import it.unisa.dia.gas.jpbc.Field;
 import it.unisa.dia.gas.jpbc.Pairing;
 import it.unisa.dia.gas.plaf.jpbc.pairing.CurveParams;
 import it.unisa.dia.gas.plaf.jpbc.pairing.PairingFactory;
+import it.unisa.dia.gas.plaf.jpbc.pbc.PBCPairing;
+import it.unisa.dia.gas.plaf.jpbc.pbc.jna.PBCLibraryProvider;
 import it.unisa.dia.jzks.merkleTree.ExternalMerkleNode;
 import it.unisa.dia.jzks.merkleTree.InternalMerkleNode;
 import it.unisa.dia.jzks.merkleTree.InvalidExternalMerkleNodeException;
@@ -128,7 +130,7 @@ public class CommitmentMerkleTree {
 			throw new InvalidECParameterException("No valid resource found");
 		}
 
-		init(curveParams, q, 0, hashAlgo);
+		init(curveParams, q, 0, hashAlgo, false);
 
 	}
 
@@ -167,7 +169,48 @@ public class CommitmentMerkleTree {
 
 		curveParams.putAll(parameters);
 
-		init(curveParams, q, 0, hashAlgo);
+		init(curveParams, q, 0, hashAlgo, false);
+	}
+
+	/**
+	 * Constructor
+	 * 
+	 * @param rBits
+	 *            EC r parameter for internal operations
+	 * @param qBits
+	 *            EC q parameter for internal operations
+	 * @param q
+	 *            q parameter for qMercurial Commitments
+	 * @param hashAlgo
+	 *            Hashing algorithm type
+	 * @param useWrapper
+	 *            Set if you want to use the wrapper to PBC C library
+	 * @throws InvalidQParameterException
+	 *             Invalid q parameter
+	 * @throws InvalidECParameterException
+	 *             Invalid elliptic curve parameters
+	 * @throws ParameterValueMismatchException
+	 *             The digest length and the q value are not compatible
+	 * @throws NoSuchAlgorithmException
+	 *             Hash algorithm not valid
+	 * @throws SecurityParameterNotSatisfiedException
+	 *             The depth of the tree does not satisfy the security parameter
+	 */
+	public CommitmentMerkleTree(int rBits, int qBits, int q, String hashAlgo,
+			boolean useWrapper) throws InvalidQParameterException,
+			InvalidECParameterException, NoSuchAlgorithmException,
+			ParameterValueMismatchException,
+			SecurityParameterNotSatisfiedException {
+
+		TypeACurveGeneratorSafe curveGenerator = new TypeACurveGeneratorSafe(
+				rBits, qBits);
+
+		CurveParams curveParams = new CurveParams();
+		Map<String, String> parameters = curveGenerator.generate();
+
+		curveParams.putAll(parameters);
+
+		init(curveParams, q, 0, hashAlgo, useWrapper);
 	}
 
 	/**
@@ -195,7 +238,7 @@ public class CommitmentMerkleTree {
 			NoSuchAlgorithmException, ParameterValueMismatchException,
 			SecurityParameterNotSatisfiedException {
 
-		init(curveParams, q, 0, hashAlgo);
+		init(curveParams, q, 0, hashAlgo, false);
 
 	}
 
@@ -222,7 +265,7 @@ public class CommitmentMerkleTree {
 			NoSuchAlgorithmException, ParameterValueMismatchException,
 			SecurityParameterNotSatisfiedException {
 
-		init(curveParams, q, 0, Utils.DEFAULT_HASH_ALGO);
+		init(curveParams, q, 0, Utils.DEFAULT_HASH_ALGO, false);
 
 	}
 
@@ -351,7 +394,8 @@ public class CommitmentMerkleTree {
 	public CommitmentMerkleTree(String ECParameters, int q, int height,
 			String hashAlgo) throws InvalidQParameterException,
 			InvalidECParameterException, NoSuchAlgorithmException,
-			ParameterValueMismatchException, SecurityParameterNotSatisfiedException {
+			ParameterValueMismatchException,
+			SecurityParameterNotSatisfiedException {
 
 		CurveParams curveParams;
 		try {
@@ -361,7 +405,7 @@ public class CommitmentMerkleTree {
 		}
 
 		logger.warning("Arbitrary tree height not yet implemented");
-		init(curveParams, q, 0, hashAlgo);
+		init(curveParams, q, 0, hashAlgo, false);
 
 	}
 
@@ -392,7 +436,8 @@ public class CommitmentMerkleTree {
 	public CommitmentMerkleTree(int rBits, int qBits, int q, int height,
 			String hashAlgo) throws InvalidQParameterException,
 			InvalidECParameterException, NoSuchAlgorithmException,
-			ParameterValueMismatchException, SecurityParameterNotSatisfiedException {
+			ParameterValueMismatchException,
+			SecurityParameterNotSatisfiedException {
 
 		TypeACurveGeneratorSafe curveGenerator = new TypeACurveGeneratorSafe(
 				rBits, qBits);
@@ -403,7 +448,7 @@ public class CommitmentMerkleTree {
 		curveParams.putAll(parameters);
 
 		logger.warning("Arbitrary tree height not yet implemented");
-		init(curveParams, q, 0, hashAlgo);
+		init(curveParams, q, 0, hashAlgo, false);
 	}
 
 	/**
@@ -431,9 +476,44 @@ public class CommitmentMerkleTree {
 	public CommitmentMerkleTree(CurveParams curveParams, int q, int height,
 			String hashAlgo) throws InvalidQParameterException,
 			InvalidECParameterException, NoSuchAlgorithmException,
-			ParameterValueMismatchException, SecurityParameterNotSatisfiedException {
+			ParameterValueMismatchException,
+			SecurityParameterNotSatisfiedException {
 
-		init(curveParams, q, height, hashAlgo);
+		init(curveParams, q, height, hashAlgo, false);
+
+	}
+
+	/**
+	 * Constructor
+	 * 
+	 * @param curveParams
+	 *            Elliptic Curve parameters
+	 * @param q
+	 *            q parameter for qMercurial Commitments
+	 * @param height
+	 *            Tree height
+	 * @param hashAlgo
+	 *            Hashing algorithm type
+	 * @param useWrapper
+	 *            Set if you want to use the wrapper to PBC C library
+	 * @throws InvalidQParameterException
+	 *             Invalid q parameter
+	 * @throws InvalidECParameterException
+	 *             Invalid elliptic curve parameters
+	 * @throws ParameterValueMismatchException
+	 *             The digest length and the q value are not compatible
+	 * @throws NoSuchAlgorithmException
+	 *             Hash algorithm not valid
+	 * @throws SecurityParameterNotSatisfiedException
+	 *             The depth of the tree does not satisfy the security parameter
+	 */
+	public CommitmentMerkleTree(CurveParams curveParams, int q, int height,
+			String hashAlgo, boolean useWrapper)
+			throws InvalidQParameterException, InvalidECParameterException,
+			NoSuchAlgorithmException, ParameterValueMismatchException,
+			SecurityParameterNotSatisfiedException {
+
+		init(curveParams, q, height, hashAlgo, useWrapper);
 
 	}
 
@@ -502,7 +582,10 @@ public class CommitmentMerkleTree {
 	 *            q parameter for qMercurial Commitments
 	 * @param hashAlgo
 	 *            Hashing Algorithm type
-	 * 
+	 * @param height
+	 *            Tree height, if the user specified it
+	 * @param useWrapper
+	 *            Set if you want to use the wrapper to PBC C library
 	 * @throws InvalidQParameterException
 	 *             Invalid q parameter for qMercurial Commitments
 	 * @throws InvalidECParameterException
@@ -515,9 +598,10 @@ public class CommitmentMerkleTree {
 	 *             The depth of the tree does not satisfy the security parameter
 	 */
 	private void init(CurveParams curveParams, int q, int height,
-			String hashAlgo) throws InvalidQParameterException,
-			InvalidECParameterException, ParameterValueMismatchException,
-			NoSuchAlgorithmException, SecurityParameterNotSatisfiedException {
+			String hashAlgo, boolean useWrapper)
+			throws InvalidQParameterException, InvalidECParameterException,
+			ParameterValueMismatchException, NoSuchAlgorithmException,
+			SecurityParameterNotSatisfiedException {
 
 		// Checks on r parameter
 		BigInteger r = new BigInteger(curveParams.get("r"));
@@ -529,7 +613,17 @@ public class CommitmentMerkleTree {
 		if (!p.isProbablePrime(CERTAINTY))
 			logger.warning("EC parameter r is not a safe prime");
 
-		Pairing pairing = PairingFactory.getPairing(curveParams);
+		Pairing pairing;
+		if (useWrapper) {
+			if (PBCLibraryProvider.isAvailable())
+				pairing = new PBCPairing(curveParams);
+			else {
+				logger
+						.warning("PBC Library Provider is not available, continue without using wrapper");
+				pairing = PairingFactory.getPairing(curveParams);
+			}
+		} else
+			pairing = PairingFactory.getPairing(curveParams);
 
 		Field G1 = pairing.getG1();
 		Field Zr = pairing.getZr();
@@ -623,8 +717,9 @@ public class CommitmentMerkleTree {
 
 			// TODO
 			message.add(commitmentLeaves.getZr().newOneElement());
-			message.add(commitmentLeaves.getZr().newElement(
-					new BigInteger(valueHash)));
+			Element m = commitmentLeaves.getZr().newElement();
+			m.set(new BigInteger(valueHash));
+			message.add(m);
 
 			OutputCommit outputCommit = commitmentLeaves.qHCom(
 					commitmentKeysLeaves.getPk(), message);
@@ -681,8 +776,9 @@ public class CommitmentMerkleTree {
 
 			// TODO
 			message.add(commitmentLeaves.getZr().newOneElement());
-			message.add(commitmentLeaves.getZr().newElement(
-					new BigInteger(valueHash)));
+			Element m = commitmentLeaves.getZr().newElement();
+			m.set(new BigInteger(valueHash));
+			message.add(m);
 
 			OutputCommit outputCommit = commitmentLeaves.qHCom(
 					commitmentKeysLeaves.getPk(), message);
@@ -773,8 +869,9 @@ public class CommitmentMerkleTree {
 
 					byte[] valueHash = utils
 							.internalNodeHash(current.element());
-					message.set(current.element().getIndex(), commitment
-							.getZr().newElement(new BigInteger(valueHash)));
+					Element em = commitment.getZr().newElement();
+					em.set(new BigInteger(valueHash));
+					message.set(current.element().getIndex(), em);
 				}
 
 				outputCommit = commitment

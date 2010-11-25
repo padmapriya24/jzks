@@ -10,9 +10,6 @@ import it.unisa.dia.gas.jpbc.Element;
 
 /**
  * Output parameters from commitment operations
- * 
- * @author Costante Luca (dott.costante@gmail.com)
- * @author Giardino Daniele (dagix5@gmail.com)
  */
 public class OutputCommit {
 

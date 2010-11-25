@@ -108,8 +108,9 @@ public class ZKSVerifier {
 			logger.finer("HASH " + new BigInteger(valueHash).abs().toString(2)
 					+ evidence.getC());
 
-			message.add(commitmentLeaves.getZr().newElement(
-					new BigInteger(valueHash)));
+			Element m = commitmentLeaves.getZr().newElement();
+			m.set(new BigInteger(valueHash));
+			message.add(m);
 
 			if (commitmentLeaves.qHVer(commitmentKeysLeaves, message.get(1), 1,
 					evidence.getC(), evidence.getV(), evidence.getOpening()))
@@ -142,8 +143,8 @@ public class ZKSVerifier {
 
 			byte[] valueHash = utils.internalNodeHash(child);
 
-			Element mi = commitment.getZr().newElement(
-					new BigInteger(valueHash));
+			Element mi = commitment.getZr().newElement();
+			mi.set(new BigInteger(valueHash));
 
 			f = false;
 			if (found) {
@@ -178,7 +179,8 @@ public class ZKSVerifier {
 
 		byte[] valueHash = utils.internalNodeHash(child);
 
-		Element mi = commitment.getZr().newElement(new BigInteger(valueHash));
+		Element mi = commitment.getZr().newElement();
+		mi.set(new BigInteger(valueHash));
 
 		f = false;
 		if (found) {

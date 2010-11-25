@@ -146,7 +146,9 @@ public class Commitment implements LibertYung_qTMC {
 		ArrayList<Element> key = new ArrayList<Element>();
 		key.add(0, g);
 		for (int i = 1; i <= (2 * q); i++) {
-			Element ai = alphap.powZn(Zr.newElement(i));
+			Element iZ = Zr.newElement();
+			iZ.set(i);
+			Element ai = alphap.powZn(iZ);
 			Element gi = gp.powZn(ai);
 			if (i == (q + 1)) {
 				commkey.setTk(gi);
@@ -217,8 +219,10 @@ public class Commitment implements LibertYung_qTMC {
 			ArrayList<Element> messages, BigInteger g, BigInteger t) {
 		OutputCommit ohc = new OutputCommit();
 
-		Element gamma = Zr.newElement(g);
-		Element teta = Zr.newElement(t);
+		Element gamma = Zr.newElement();
+		gamma.set(g);
+		Element teta = Zr.newElement();
+		teta.set(t);
 
 		Element C = gp.powZn(teta);
 
@@ -290,8 +294,10 @@ public class Commitment implements LibertYung_qTMC {
 			BigInteger t) {
 		OutputCommit osc = new OutputCommit();
 
-		Element gamma = Zr.newElement(g);
-		Element teta = Zr.newElement(t);
+		Element gamma = Zr.newElement();
+		gamma.set(g);
+		Element teta = Zr.newElement();
+		teta.set(t);
 
 		Element g1 = Pk.get(1);
 
